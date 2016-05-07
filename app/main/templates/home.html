@@ -1,5 +1,9 @@
 <ion-view view-title="Home">
   <ion-content>
-    <a href="#/main/journey" id="create-journey">New Journey</a>
+    <div ng-controller='JourneyController as ctrl'>
+
+      <a href='#/main/journey' id='create-journey' ng-click='ctrl.startJourney();'>New Journey</a>
+
+    </div>
   </ion-content>
 </ion-view>
