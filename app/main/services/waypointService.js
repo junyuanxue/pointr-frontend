@@ -15,6 +15,6 @@ angular
     }
 
     function _errorCallBack (error) {
-      console.log(error);
+      return;
     }
   }]);

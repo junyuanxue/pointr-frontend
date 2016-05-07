@@ -12,9 +12,9 @@ angular
       var journey = new JourneyFactory();
       journey.id = response.data.id;
       return journey;
-    }
+    };
 
     function _errorCallBack(error) {
-      console.log(error);
-    }
+      return;
+    };
   }]);
