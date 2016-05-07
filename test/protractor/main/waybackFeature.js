@@ -6,5 +6,5 @@ describe('Wayback', function () {
     var endJourneyButton = $('#end-journey');
     expect(addWaypointButton.getText()).toEqual('Add Waypoint');
     expect(endJourneyButton.getText()).toEqual('End Journey');
-  })
-})
+  });
+});
