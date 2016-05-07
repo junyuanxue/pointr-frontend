@@ -18,5 +18,4 @@ describe('JourneyService', function(){
         expect(journey.id).toEqual(5);
       });
   });
-
 });
