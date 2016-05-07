@@ -16,7 +16,5 @@ angular
       return journey;
     }
 
-    function _errorCallBack () {
-      return;
-    }
+    function _errorCallBack () { return; }
   }]);

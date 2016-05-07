@@ -10,7 +10,7 @@ describe('WaypointService', function () {
   beforeEach(inject(function (_WaypointService_, $httpBackend) {
     WaypointService = _WaypointService_;
     httpBackend = $httpBackend;
-    $httpBackend.whenGET(/main.*/).respond(200, '');
+    httpBackend.whenGET(/main.*/).respond(200, '');
   }));
 
   it('makes POST request to waypoints', function () {

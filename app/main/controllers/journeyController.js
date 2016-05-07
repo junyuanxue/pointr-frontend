@@ -8,6 +8,7 @@ angular
 
     self.startJourney = function () {
       JourneyService.startJourney().then(function (journey) {
+        console.log(typeof journey !== 'undefined');
         if (typeof journey !== 'undefined' ) {
           self.journey = journey;
           self.createWaypoint(self.journey.id);
