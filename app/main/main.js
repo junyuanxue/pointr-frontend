@@ -8,7 +8,7 @@ angular.module('main', [
 .config(function ($stateProvider, $urlRouterProvider) {
 
   // ROUTING with ui.router
-  $urlRouterProvider.otherwise('/main/list');
+  $urlRouterProvider.otherwise('/main/home');
   $stateProvider
     // this state is placed in the <ion-nav-view> in the index.html
     .state('main', {
@@ -16,30 +16,12 @@ angular.module('main', [
       abstract: true,
       templateUrl: 'main/templates/tabs.html'
     })
-      .state('main.list', {
-        url: '/list',
+      .state('main.home', {
+        url: '/home',
         views: {
           'tab-list': {
-            templateUrl: 'main/templates/list.html',
+            templateUrl: 'main/templates/home.html',
             // controller: 'SomeCtrl as ctrl'
-          }
-        }
-      })
-      .state('main.listDetail', {
-        url: '/list/detail',
-        views: {
-          'tab-list': {
-            templateUrl: 'main/templates/list-detail.html',
-            // controller: 'SomeCtrl as ctrl'
-          }
-        }
-      })
-      .state('main.debug', {
-        url: '/debug',
-        views: {
-          'tab-debug': {
-            templateUrl: 'main/templates/debug.html',
-            controller: 'DebugCtrl as ctrl'
           }
         }
       });
