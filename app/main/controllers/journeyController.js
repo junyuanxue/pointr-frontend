@@ -2,12 +2,17 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$http', 'JourneyFactory', function ($http, JourneyFactory) {
+  .controller('JourneyController', ['$http', 'JourneyFactory', 'JourneyService', function ($http, JourneyFactory, JourneyService) {
+
     var self = this;
 
-
     self.startJourney = function () {
-      self.journey = new JourneyFactory();
+      JourneyService.startJourney().then(function (journey) {
+        if (typeof journey !== 'undefined' ) {
+          self.journey = journey;
+          // create a waypoint;
+          // add it to the journey;
+        };
+      });
     };
-
   }]);

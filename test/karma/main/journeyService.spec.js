@@ -11,6 +11,7 @@ describe('JourneyService', function(){
   }));
 
   it('Makes POST request to journeys', function(){
+    httpBackend.expectGET('/#/main/journey').respond(200);
     httpBackend.expectPOST('http://localhost:3000/journeys').respond(firstJourney);
     JourneyService.startJourney()
       .then(function(journey){

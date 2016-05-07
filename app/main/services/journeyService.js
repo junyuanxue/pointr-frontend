@@ -5,10 +5,16 @@ angular
 
     self.startJourney = function () {
       return $http.post('http://localhost:3000/journeys')
-        .then(function (response) {
-          var journey = new JourneyFactory();
-          journey.id = response.data.id;
-          return journey;
-        });
+        .then(_startJourneyCallBack, _errorCallBack);
     };
+
+    function _startJourneyCallBack(response) {
+      var journey = new JourneyFactory();
+      journey.id = response.data.id;
+      return journey;
+    }
+
+    function _errorCallBack(error) {
+      console.log(error);
+    }
   }]);
