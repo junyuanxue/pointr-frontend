@@ -1,3 +1,5 @@
+'use strict';
+
 angular
   .module('main')
   .service('JourneyService', ['$http', 'JourneyFactory', function ($http, JourneyFactory) {

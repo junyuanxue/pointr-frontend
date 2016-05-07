@@ -1,3 +1,5 @@
+'use strict';
+
 angular
   .module('main')
   .service('WaypointService', ['$http', 'WaypointFactory', function ($http, WaypointFactory) {
