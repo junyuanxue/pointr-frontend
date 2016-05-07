@@ -1,3 +1,5 @@
+'use strict';
+
 describe('JourneyController', function () {
   beforeEach(module('main'));
 

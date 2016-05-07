@@ -1,3 +1,5 @@
+'use strict';
+
 describe('JourneyService', function () {
   beforeEach(module('main'));
   var JourneyService, httpBackend;
@@ -12,7 +14,7 @@ describe('JourneyService', function () {
   it('Makes POST request to journeys', function () {
     httpBackend.expectPOST('http://localhost:3000/journeys').respond(firstJourney);
     JourneyService.startJourney()
-      .then(function(journey) {
+      .then(function (journey) {
         expect(journey.id).toEqual(5);
       });
   });
