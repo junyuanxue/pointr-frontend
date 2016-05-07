@@ -1,6 +1,6 @@
 angular
   .module('main')
-  .service('WaypointService', ['$http', 'WaypointFactory', function($http, WaypointFactory) {
+  .service('WaypointService', ['$http', 'WaypointFactory', function ($http, WaypointFactory) {
     var self = this;
 
     self.createWaypoint = function (journeyId) {
@@ -14,7 +14,7 @@ angular
       return waypoint;
     }
 
-    function _errorCallBack (error) {
+    function _errorCallBack () {
       return;
     }
   }]);

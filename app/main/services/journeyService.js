@@ -8,13 +8,13 @@ angular
         .then(_startJourneyCallBack, _errorCallBack);
     };
 
-    function _startJourneyCallBack(response) {
+    function _startJourneyCallBack (response) {
       var journey = new JourneyFactory();
       journey.id = response.data.id;
       return journey;
-    };
+    }
 
-    function _errorCallBack(error) {
+    function _errorCallBack () {
       return;
-    };
+    }
   }]);

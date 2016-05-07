@@ -11,7 +11,7 @@ angular
         if (typeof journey !== 'undefined' ) {
           self.journey = journey;
           self.createWaypoint(self.journey.id);
-        };
+        }
       });
     };
 

@@ -1,11 +1,10 @@
 describe('JourneyController', function () {
   beforeEach(module('main'));
 
-  var ctrl, WaypointFactory, JourneyService, WaypointService;
+  var ctrl, JourneyService, WaypointService;
 
-  beforeEach(inject(function ($controller, _WaypointFactory_, _JourneyService_, _WaypointService_) {
+  beforeEach(inject(function ($controller, _JourneyService_, _WaypointService_) {
     ctrl = $controller('JourneyController');
-    WaypointFactory = _WaypointFactory_;
     JourneyService = _JourneyService_;
     WaypointService = _WaypointService_;
   }));
