@@ -24,5 +24,14 @@ angular.module('main', [
             // controller: 'SomeCtrl as ctrl'
           }
         }
+      })
+      .state('main.journey', {
+        url: '/journey',
+        views: {
+          'tab-list': {
+            templateUrl: 'main/templates/journey.html',
+            // controller: 'SomeCtrl as ctrl'
+          }
+        }
       });
 });
