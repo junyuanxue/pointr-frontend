@@ -33,5 +33,14 @@ angular.module('main', [
             // controller: 'SomeCtrl as ctrl'
           }
         }
+      })
+      .state('main.transition', {
+        url: '/transition',
+        views: {
+          'tab-list': {
+            templateUrl: 'main/templates/transition.html',
+            // controller: 'SomeCtrl as ctrl'
+          }
+        }
       });
 });

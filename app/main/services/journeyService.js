@@ -1,4 +1,5 @@
 'use strict';
+
 angular
   .module('main')
   .service('JourneyService', ['$http', 'JourneyFactory', function ($http, JourneyFactory) {
@@ -15,7 +16,11 @@ angular
       return journey;
     }
 
-    function _errorCallBack (error) {
-      console.log(error);
-    }
+    self.deleteJourney = function (journeyId) {
+      return $http.delete('http://localhost:3000/journeys/' + journeyId).then(_successCallBack, _errorCallBack);
+    };
+
+    function _successCallBack () { return; }
+
+    function _errorCallBack () { return; }
   }]);
