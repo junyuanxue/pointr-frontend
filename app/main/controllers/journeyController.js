@@ -5,7 +5,9 @@ angular
   .controller('JourneyController', ['$http', 'JourneyFactory', 'JourneyService', '$location', 'WaypointService', 'MapService',
     function ($http, JourneyFactory, JourneyService, $location, WaypointService, MapService) {
         var self = this;
+
         self.journey = JourneyService.getCurrentJourney();
+
         self.currentLocation = null;
         MapService.watchLocation();
         MapService.loadMap();
@@ -29,15 +31,5 @@ angular
               MapService.addMarker(waypoint);
             });
           }
-        };
-
-        self.deleteWaypoint = function (waypoint) {
-          WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
-            waypoint.markAsReached();
-          });
-        };
-
-        self.deleteJourney = function () {
-          JourneyService.deleteJourney(self.journey.id);
         };
       }]);

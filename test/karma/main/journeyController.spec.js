@@ -21,18 +21,4 @@ describe('JourneyController', function () {
     ctrl.createWaypoint(1);
     expect(WaypointService.createWaypoint).toHaveBeenCalledWith(1);
   });
-
-  it('deletes a waypoint in the journey', function () {
-    var waypoint = { id: 4 };
-    spyOn(WaypointService, 'deleteWaypoint').and.callThrough();
-    ctrl.deleteWaypoint(waypoint);
-    expect(WaypointService.deleteWaypoint).toHaveBeenCalledWith(waypoint.id);
-  });
-
-  it('deletes a journey when complete', function () {
-    ctrl.journey = { id: 3 };
-    spyOn(JourneyService, 'deleteJourney').and.callThrough();
-    ctrl.deleteJourney();
-    expect(JourneyService.deleteJourney).toHaveBeenCalledWith(ctrl.journey.id);
-  });
 });

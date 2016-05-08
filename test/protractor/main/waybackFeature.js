@@ -11,10 +11,16 @@ describe('Wayback', function () {
     expect(endJourneyButton.getText()).toEqual('End Journey');
   });
 
-  it('end the journey', function () {
+  it('ends the journey', function () {
     browser.get('/#/main/journey');
     $('#end-journey').click();
     var wayBackButton = $('#way-back');
     expect(wayBackButton.getText()).toEqual('Find My Way Back');
   });
+
+  it('starts the journey back', function () {
+    browser.get('/#/main/transition');
+    $('#way-back').click();
+    expect(browser.getCurrentUrl()).toEqual('/#/main/journeyback');
+  })
 });

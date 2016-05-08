@@ -14,7 +14,7 @@ describe('WaypointService', function () {
   }));
 
   it('makes a POST request to waypoints', function () {
-    httpBackend.expectPOST('http://localhost:3000/journeys/1/waypoints').respond(firstWaypoint);
+    httpBackend.expectPOST('http://localhost:3001/journeys/1/waypoints').respond(firstWaypoint);
     WaypointService.createWaypoint(1)
       .then(function (waypoint) {
         expect(waypoint.latitude).toEqual(0.1);
@@ -25,7 +25,7 @@ describe('WaypointService', function () {
 
   it('makes a DELETE request to waypoints', function () {
     var _then = jasmine.createSpy('_then');
-    httpBackend.expectDELETE('http://localhost:3000/waypoints/1').respond(200);
+    httpBackend.expectDELETE('http://localhost:3001/waypoints/1').respond(200);
     WaypointService.deleteWaypoint(1).then(_then);
     httpBackend.flush();
     expect(_then).toHaveBeenCalled();
