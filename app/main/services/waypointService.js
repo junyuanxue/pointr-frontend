@@ -11,7 +11,9 @@ angular
     };
 
     function _createWaypointCallBack (response) {
-      var waypoint = new WaypointFactory(response.data.latitude, response.data.longitude);
+      var lat = parseFloat(response.data.latitude);
+      var lng = parseFloat(response.data.longitude);
+      var waypoint = new WaypointFactory(lat, lng);
       waypoint.id = response.data.id;
       return waypoint;
     }
