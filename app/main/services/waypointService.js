@@ -5,8 +5,9 @@ angular
   .service('WaypointService', ['$http', 'WaypointFactory', function ($http, WaypointFactory) {
     var self = this;
 
-    self.createWaypoint = function (journeyId) {
-      return $http.post('http://localhost:3000/journeys/' + journeyId + '/waypoints')
+    self.createWaypoint = function (journeyId, coordinates) {
+      var data = {'waypoint': {'latitude': coordinates.latitude, 'longitude': coordinates.longitude}}
+      return $http.post('http://localhost:3001/journeys/' + journeyId + '/waypoints', data)
         .then(_createWaypointCallBack, _errorCallBack);
     };
 
@@ -15,11 +16,12 @@ angular
       var lng = parseFloat(response.data.longitude);
       var waypoint = new WaypointFactory(lat, lng);
       waypoint.id = response.data.id;
+      console.log(response);
       return waypoint;
     }
 
     self.deleteWaypoint = function (waypointId) {
-      return $http.delete('http://localhost:3000/waypoints/' + waypointId).then(_successCallBack, _errorCallBack);
+      return $http.delete('http://localhost:3001/waypoints/' + waypointId).then(_successCallBack, _errorCallBack);
     };
 
     function _successCallBack () { return; }
