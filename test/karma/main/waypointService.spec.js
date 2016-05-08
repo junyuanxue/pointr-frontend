@@ -6,6 +6,7 @@ describe('WaypointService', function () {
   var WaypointService, httpBackend;
 
   var firstWaypoint = { 'id': 1, 'latitude': '0.1', 'longitude': '1.1' };
+  var coordinates = { latitude: 0.1, longitude: 1.1 }
 
   beforeEach(inject(function (_WaypointService_, $httpBackend) {
     WaypointService = _WaypointService_;
@@ -15,7 +16,7 @@ describe('WaypointService', function () {
 
   it('makes a POST request to waypoints', function () {
     httpBackend.expectPOST('http://localhost:3001/journeys/1/waypoints').respond(firstWaypoint);
-    WaypointService.createWaypoint(1)
+    WaypointService.createWaypoint(1, coordinates)
       .then(function (waypoint) {
         expect(waypoint.latitude).toEqual(0.1);
         expect(waypoint.longitude).toEqual(1.1);
