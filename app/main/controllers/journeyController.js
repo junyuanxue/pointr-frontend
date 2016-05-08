@@ -65,20 +65,7 @@ angular
           });
         };
 
-<<<<<<< HEAD
-    // self.deleteWaypoint = function (waypoint) {
-    //   WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
-    //     waypoint.markAsReached();
-    //   });
-    // };
-    //
-    // self.deleteJourney = function () {
-    //   JourneyService.deleteJourney(self.journey.id);
-    // };
-  }]);
-=======
         self.deleteJourney = function () {
           JourneyService.deleteJourney(self.journey.id);
         };
       }]);
->>>>>>> ff2daba281b7a7a3ca07203cf4eaef2fcf84aeec
