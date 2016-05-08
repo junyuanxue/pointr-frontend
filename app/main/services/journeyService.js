@@ -6,7 +6,7 @@ angular
     var self = this;
     self.currentJourney = null;
 
-    self.getCurrentJourney = function () {
+    self.getCurrentJourney = function () {      
       return self.currentJourney;
     };
 

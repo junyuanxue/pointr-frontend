@@ -42,5 +42,14 @@ angular.module('main', [
             // controller: 'SomeCtrl as ctrl'
           }
         }
+      })
+      .state('main.journeyback', {
+        url: '/journeyback',
+        views: {
+          'tab-list': {
+            templateUrl: 'main/templates/journeyback.html',
+            // controller: 'SomeCtrl as ctrl'
+          }
+        }
       });
 });
