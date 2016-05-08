@@ -13,7 +13,7 @@ describe('WaypointService', function () {
     httpBackend.whenGET(/main.*/).respond(200, '');
   }));
 
-  it('makes POST request to waypoints', function () {
+  it('makes a POST request to waypoints', function () {
     httpBackend.expectPOST('http://localhost:3000/journeys/1/waypoints').respond(firstWaypoint);
     WaypointService.createWaypoint(1)
       .then(function (waypoint) {

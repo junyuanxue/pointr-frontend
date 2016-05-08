@@ -5,16 +5,13 @@ describe('JourneyController', function () {
 
   var ctrl, JourneyService, WaypointService;
 
-  var firstJourney = { 'id': 1 };
-  var firstWaypoint = { 'id': 1, 'latitude': '0.1', 'longitude': '1.1' };
-
   beforeEach(inject(function ($controller, _JourneyService_, _WaypointService_) {
     ctrl = $controller('JourneyController');
     JourneyService = _JourneyService_;
     WaypointService = _WaypointService_;
   }));
 
-  it('starting a new journey', function () {
+  it('starts a new journey', function () {
     ctrl.startJourney();
     expect(JourneyService.startJourney).toHaveBeenCalled;
   });
@@ -23,5 +20,19 @@ describe('JourneyController', function () {
     spyOn(WaypointService, 'createWaypoint').and.callThrough();
     ctrl.createWaypoint(1);
     expect(WaypointService.createWaypoint).toHaveBeenCalledWith(1);
+  });
+
+  it('deletes a waypoint in the journey', function () {
+    var waypoint = { id: 4 };
+    spyOn(WaypointService, 'deleteWaypoint').and.callThrough();
+    ctrl.deleteWaypoint(waypoint);
+    expect(WaypointService.deleteWaypoint).toHaveBeenCalledWith(waypoint.id);
+  });
+
+  it('deletes a journey when complete', function () {
+    ctrl.journey = { id: 3 };
+    spyOn(JourneyService, 'deleteJourney').and.callThrough();
+    ctrl.deleteJourney();
+    expect(JourneyService.deleteJourney).toHaveBeenCalledWith(ctrl.journey.id);
   });
 });

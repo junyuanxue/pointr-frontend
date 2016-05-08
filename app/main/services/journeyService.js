@@ -16,5 +16,11 @@ angular
       return journey;
     }
 
+    self.deleteJourney = function (journeyId) {
+      return $http.delete('http://localhost:3000/journeys/' + journeyId).then(_successCallBack, _errorCallBack);
+    };
+
+    function _successCallBack () { return; }
+
     function _errorCallBack () { return; }
   }]);

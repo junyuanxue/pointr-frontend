@@ -16,4 +16,13 @@ describe('WaypointFactory', function () {
   it('adds a longitude', function () {
     expect(waypoint.longitude).toEqual(10.1);
   });
+
+  it('is not reached by default', function () {
+    expect(waypoint.reached).toBeFalse;
+  });
+
+  it('marks the waypoint as reached', function () {
+    waypoint.markAsReached();
+    expect(waypoint.reached).toBeTrue;
+  });
 });

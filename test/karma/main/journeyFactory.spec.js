@@ -6,7 +6,7 @@ describe('JourneyFactory', function () {
   var journey;
 
   beforeEach(inject(function (JourneyFactory) {
-    journey = new JourneyFactory;
+    journey = new JourneyFactory();
   }));
 
   it('starts with an empty array of waypoints', function () {

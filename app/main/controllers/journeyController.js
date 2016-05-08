@@ -20,4 +20,14 @@ angular
         self.journey.addWaypoint(waypoint);
       });
     };
+
+    self.deleteWaypoint = function (waypoint) {
+      WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
+        waypoint.markAsReached();
+      });
+    };
+
+    self.deleteJourney = function () {
+      JourneyService.deleteJourney(self.journey.id);
+    };
   }]);
