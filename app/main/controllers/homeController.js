@@ -11,8 +11,6 @@ angular
             if (typeof journey !== 'undefined' ) {
               $location.path('/main/journey');
               self.journey = journey;
-              // create a waypoint;
-              // add it to the journey;
             }
           });
         };

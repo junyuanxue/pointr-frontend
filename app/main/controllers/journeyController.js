@@ -26,8 +26,8 @@ angular
         watch.then(null, function (err) {
             console.log(err);
         }, function (position) {
+          console.log(position);
           self.currentLocation = position.coords;
-          console.log(self.currentLocation);
           //Add the update the location on the map.
         });
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
@@ -38,6 +38,7 @@ angular
             zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
+          console.log(self.currentLocation);
           self.map = new google.maps.Map(document.getElementById('map'), mapOptions);
         }, function (error) {
           console.log(error);
@@ -54,9 +55,12 @@ angular
 
         self.createWaypoint = function () {
           self.journey = JourneyService.getCurrentJourney();
-          WaypointService.createWaypoint(self.journey.id, self.currentLocation).then(function (waypoint) {
-            self.journey.addWaypoint(waypoint);
-          });
+          console.log(self.journey);
+          if (typeof self.journey !== undefined){
+            WaypointService.createWaypoint(self.journey.id, self.currentLocation).then(function (waypoint) {
+              self.journey.addWaypoint(waypoint);
+            });
+          }
         };
 
         self.deleteWaypoint = function (waypoint) {
