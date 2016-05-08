@@ -21,13 +21,13 @@ angular
       });
     };
 
-    self.deleteWaypoint = function (waypoint) {
-      WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
-        waypoint.markAsReached();
-      });
-    };
-
-    self.deleteJourney = function () {
-      JourneyService.deleteJourney(self.journey.id);
-    };
+    // self.deleteWaypoint = function (waypoint) {
+    //   WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
+    //     waypoint.markAsReached();
+    //   });
+    // };
+    //
+    // self.deleteJourney = function () {
+    //   JourneyService.deleteJourney(self.journey.id);
+    // };
   }]);

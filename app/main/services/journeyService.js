@@ -14,7 +14,7 @@ angular
       var journey = new JourneyFactory();
       journey.id = response.data.id;
       return journey;
-    }
+    };
 
     self.deleteJourney = function (journeyId) {
       return $http.delete('http://localhost:3000/journeys/' + journeyId).then(_successCallBack, _errorCallBack);
