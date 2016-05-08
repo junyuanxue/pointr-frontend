@@ -21,7 +21,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/home.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'HomeController as ctrl'
           }
         }
       })
@@ -30,7 +30,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/journey.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'JourneyController as ctrl'
           }
         }
       })

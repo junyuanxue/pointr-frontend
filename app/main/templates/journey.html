@@ -3,9 +3,9 @@
   <ion-content class="padding">
 
     <!-- content goes here -->
-    <img ng-src="main/assets/images/yo@2x.png" style="width: 64px; height: 64px">
+    <div id="map" data-tap-disabled="true"></div>
     <p>
-      <button id="add-waypoint" type="button" name="button">Add Waypoint</button>
+      <a class="button icon-right ion-plus-round"  id="end-journey" ng-click="ctrl.createWaypoint()">Add Waypoint</a>
 
       <a class="button icon-right ion-plus-round"  id="end-journey" href="/#/main/transition">End Journey</a>
     </p>
