@@ -17,7 +17,7 @@ angular
             }
           });
         };
-        var options = {timeout: 2000, enableHighAccuracy: true};
+        var options = {timeout: 5000, enableHighAccuracy: true};
         var watch = $cordovaGeolocation.watchPosition(options);
 
         watch.then(null, function (err) {
