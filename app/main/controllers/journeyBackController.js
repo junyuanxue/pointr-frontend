@@ -7,7 +7,10 @@ angular
     var self = this;
 
     self.startJourneyBack = function () {
-      self.journey = JourneyService.getCurrentJourney();
+      var journeyId = JourneyService.getCurrentJourney().id;
+      JourneyService.getJourney(journeyId).then(function (journey) {
+        self.journey = journey;
+      });
     };
 
     self.deleteWaypoint = function (waypoint) {

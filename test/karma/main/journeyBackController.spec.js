@@ -13,8 +13,9 @@ describe('JourneyBackController', function () {
 
   it('starts the journey back', function () {
     var journey = { id: 3 };
-    spyOn(JourneyService, 'getCurrentJourney').and.returnValue(journey);
-    expect(ctrl.journey.id).toEqual(journey.id);
+    spyOn(JourneyService, 'getCurrentJourney').andReturn(journey);
+    ctrl.startJourneyBack();
+    expect(JourneyService.getJourney).toHaveBeenCalledWith(3);
   });
 
   it('deletes a waypoint in the journey', function () {
