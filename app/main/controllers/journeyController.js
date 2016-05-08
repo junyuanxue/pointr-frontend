@@ -5,29 +5,33 @@ angular
   .controller('JourneyController', ['$http', 'JourneyFactory', 'JourneyService', '$location', '$cordovaGeolocation', 'WaypointService',
       function ($http, JourneyFactory, JourneyService, $location, $cordovaGeolocation, WaypointService) {
         var self = this;
+        self.journey = JourneyService.getCurrentJourney();
+        self.currentLocation = null;
         self.startJourney = function () {
+          console.log("HI started journey");
           JourneyService.startJourney().then(function (journey) {
             $location.path('/main/journey');
+            console.log(journey);
             if (typeof journey !== 'undefined' ) {
               self.journey = journey;
+              console.log(self.journey);
               // create a waypoint;
               // add it to the journey;
             }
           });
         };
-        var options = {timeout: 5000, enableHighAccuracy: true};
+        var options = {timeout: 25000, enableHighAccuracy: true};
         var watch = $cordovaGeolocation.watchPosition(options);
 
         watch.then(null, function (err) {
             console.log(err);
-            console.log('Could not get location');
         }, function (position) {
-          var lat  = position.coords.latitude;
-          var long = position.coords.longitude;
-          console.log(lat + '' + long);
+          self.currentLocation = position.coords;
+          console.log(self.currentLocation);
+          //Add the update the location on the map.
         });
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-          console.log(position.coords);
+          self.currentLocation = position.coords;
           var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
           var mapOptions = {
             center: latLng,
@@ -48,8 +52,9 @@ angular
           });
         };
 
-        self.createWaypoint = function (journeyId) {
-          WaypointService.createWaypoint(journeyId).then(function (waypoint) {
+        self.createWaypoint = function () {
+          self.journey = JourneyService.getCurrentJourney();
+          WaypointService.createWaypoint(self.journey.id, self.currentLocation).then(function (waypoint) {
             self.journey.addWaypoint(waypoint);
           });
         };
