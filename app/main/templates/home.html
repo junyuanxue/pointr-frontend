@@ -3,10 +3,15 @@
 
       <a class="button icon-right ion-plus-round"  id="create-journey" ng-click="ctrl.startJourney();">New Journey</a>
 
-      <button class="button button-energized" ng-click="ctrl.takePicture()">
-        Take Picture
+      <button class="button button-energized" ng-click="ctrl.takePhoto()">
+        Take Photo
       </button>
-      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+
+      <ion-scroll>
+      	  <img ng-src="{{ctrl.imgURI}}">
+          <!-- <img ng-repeat="image in ctrl.images" ng-src="{{ctrl.urlForImage(image)}}" height="200px"/> -->
+      </ion-scroll>
+
 
   </ion-content>
 </ion-view>
