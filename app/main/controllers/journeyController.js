@@ -8,8 +8,6 @@ angular
 
       _loadCurrentJourneyFromService();
 
-      console.log(self.journey.waypoints);
-
       self.currentLocation = null;
       MapService.watchLocation();
       MapService.loadMap();
@@ -32,10 +30,14 @@ angular
       };
 
       self.editWaypointDescription = function (descText) {
-        var lastWaypoint = self.journey.waypoints.last;
-        console.log(lastWaypoint);
+        var lastWaypoint = self.getLastWaypoint();
         lastWaypoint.description = descText;
         WaypointService.updateWaypoint(lastWaypoint.id, descText);
+      };
+
+      self.getLastWaypoint = function () {
+        var waypoints = self.journey.waypoints;
+        return waypoints[waypoints.length - 1];
       };
 
       function _loadCurrentJourneyFromService () {

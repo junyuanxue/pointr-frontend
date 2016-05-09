@@ -14,9 +14,9 @@
       <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
     </div>
 
-    <div ng-if="ctrl.journey.waypoints.length > 0">
-      <p id="wp-desc"> {{ ctrl.journey.waypoints.last.description }} </p>
-      <div ng-if="ctrl.journey.waypoints.last.description === ''">
+    <div ng-if="ctrl.getLastWaypoint() !== undefined">
+      <p id="wp-desc"> {{ ctrl.getLastWaypoint().description }} </p>
+      <div ng-if="ctrl.getLastWaypoint().description === ''">
         <input type="text" id="add-wp-desc" placeholder="What's special about this spot?" ng-model="descText">
         <button id="save-wp-desc" class="button button-stable" ng-click="ctrl.editWaypointDescription(descText);">Save</button>
       </div>

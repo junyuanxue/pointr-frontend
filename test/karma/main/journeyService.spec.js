@@ -37,10 +37,10 @@ describe('JourneyService', function () {
   });
 
   it('makes a PATCH request to journeys', function () {
+    var _then = jasmine.createSpy('_then');
     httpBackend.expectPATCH('http://localhost:3001/journeys/3').respond(200);
-    JourneyService.updateJourney('New journey').then(function () {
-      expect(JourneyService.currentJourney.description).toEqual('New journey');
-    });
+    JourneyService.updateJourney('New journey').then(_then);
+    expect(_then).toHaveBeenCalled;
     httpBackend.flush();
   });
 
