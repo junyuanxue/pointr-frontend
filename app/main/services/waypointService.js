@@ -6,7 +6,7 @@ angular
     var self = this;
 
     self.createWaypoint = function (journeyId, coordinates) {
-      var data = {'waypoint': {'latitude': coordinates.latitude, 'longitude': coordinates.longitude}}
+      var data = {'waypoint': {'latitude': coordinates.latitude, 'longitude': coordinates.longitude}};
       return $http.post('http://localhost:3001/journeys/' + journeyId + '/waypoints', data)
         .then(_createWaypointCallBack, _errorCallBack);
     };

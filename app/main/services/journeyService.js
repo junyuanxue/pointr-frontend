@@ -15,7 +15,7 @@ angular
     };
 
     function _getJourneyCallBack (response) {
-      var journey = _startJourneyCallBack (response);
+      var journey = _startJourneyCallBack(response);
       journey.waypoints = _parseWaypointData(response.data.waypoints);
       return journey;
     }
@@ -64,6 +64,6 @@ angular
     function _successCallBack () { return; }
 
     function _errorCallBack (err) {
-      console.log(err);
+      return err;
     }
   }]);
