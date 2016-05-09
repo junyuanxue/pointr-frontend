@@ -18,8 +18,8 @@ describe('WaypointService', function () {
     httpBackend.expectPOST('http://localhost:3001/journeys/1/waypoints').respond(firstWaypoint);
     WaypointService.createWaypoint(1, coordinates)
       .then(function (waypoint) {
-        expect(waypoint.latitude).toEqual(0.1);
-        expect(waypoint.longitude).toEqual(1.1);
+        expect(waypoint.latitude).toEqual(coordinates.latitude);
+        expect(waypoint.longitude).toEqual(coordinates.longitude);
       });
     httpBackend.flush();
   });
