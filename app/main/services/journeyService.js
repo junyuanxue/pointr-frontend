@@ -44,13 +44,8 @@ angular
     self.updateJourney = function (descText) {
       var data = { 'journey': { 'description': descText }};
       return $http.patch('http://localhost:3001/journeys/' + self.currentJourney.id, data)
-        .then(_updateCurrentJourney, _errorCallBack);
+        .then(_successCallBack, _errorCallBack);
     };
-
-    function _updateCurrentJourney (response) {
-      var description = response.config.data.journey.description;
-      return self.currentJourney.description = description;
-    }
 
     self.deleteJourney = function () {
       return $http.delete('http://localhost:3001/journeys/' + self.currentJourney.id)
@@ -61,7 +56,7 @@ angular
       self.currentJourney = null;
     }
 
-    function _errorCallBack (err) {
-      return err;
-    }
+    function _successCallBack (err) { return; }
+
+    function _errorCallBack (err) { return err; }
   }]);

@@ -56,6 +56,13 @@ describe('JourneyController', function () {
     //test MapService.addMarker is getting called
   });
 
+  it('updates the waypoint description', function () {
+    ctrl.journey = { waypoints: [ { id: 3 } ] }
+    spyOn(WaypointService, 'updateWaypoint').and.callThrough();
+    ctrl.editWaypointDescription('Cool spot');
+    expect(WaypointService, 'updateWaypoint').toHaveBeenCalledWith(3, 'Cool spot');
+  });
+
   it('takes a photo', function () {
     //test Camear is being called;
   });

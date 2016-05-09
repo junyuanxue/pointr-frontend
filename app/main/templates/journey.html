@@ -3,15 +3,23 @@
 
     <div id="map" data-tap-disabled="true"></div>
     <p>
-      <a class="button icon-right ion-plus-round" id="add-waypoint" ng-click="ctrl.createWaypoint();">Add Waypoint</a>
+      <a class="button button-assertive icon-right ion-plus-round" id="add-waypoint" ng-click="ctrl.createWaypoint();">Add Waypoint</a>
 
-      <a class="button icon-right ion-plus-round" id="end-journey" href="/#/main/transition">End Journey</a>
+      <a class="button button-assertive icon-right ion-plus-round" id="end-journey" href="/#/main/transition">End Journey</a>
     </p>
 
     <p id="journey-desc"> {{ ctrl.journey.description }} </p>
     <div ng-if="ctrl.journey.description === ''">
-      <input type="text" id="edit-desc" placeholder="Describe your journey..." ng-model="descText">
+      <input type="text" id="edit-journey-desc" placeholder="Describe your journey..." ng-model="descText">
       <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
+    </div>
+
+    <div ng-if="ctrl.journey.waypoints.length > 0">
+      <p id="wp-desc"> {{ ctrl.journey.waypoints.last.description }} </p>
+      <div ng-if="ctrl.journey.waypoints.last.description === ''">
+        <input type="text" id="add-wp-desc" placeholder="What's special about this spot?" ng-model="descText">
+        <button id="save-wp-desc" class="button button-stable" ng-click="ctrl.editWaypointDescription(descText);">Save</button>
+      </div>
     </div>
 
     <button class="button button-energized" ng-click="ctrl.takePhoto()">

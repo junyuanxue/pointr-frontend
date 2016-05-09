@@ -3,10 +3,12 @@
 describe('WaypointFactory', function () {
   beforeEach(module('main'));
 
-  var waypoint;
+  var waypoint, waypointWithDesc;
 
   beforeEach(inject(function (WaypointFactory) {
     waypoint = new WaypointFactory(10.0, 10.1);
+    waypointWithDesc = new WaypointFactory(10.0, 10.1, 'Cool spot');
+
   }));
 
   it('has a latitude', function () {
@@ -15,6 +17,14 @@ describe('WaypointFactory', function () {
 
   it('adds a longitude', function () {
     expect(waypoint.longitude).toEqual(10.1);
+  });
+
+  it('starts with an empty description', function () {
+    expect(waypoint.description).toEqual('');
+  });
+
+  it('adds description', function () {
+    expect(waypointWithDesc.description).toEqual('Cool spot');
   });
 
   it('is not reached by default', function () {

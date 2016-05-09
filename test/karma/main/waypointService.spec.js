@@ -24,6 +24,14 @@ describe('WaypointService', function () {
     httpBackend.flush();
   });
 
+  it('makes a PATCH request to waypoints', function () {
+    httpBackend.expectPATCH('http://localhost:3001/waypoints/1').respond(200);
+    WaypointService.updateWaypoint(1, 'Cool spot').then(function () {
+      expect(waypoint.description).toEqual()
+    });
+    httpBackend.flush();
+  });
+
   it('makes a DELETE request to waypoints', function () {
     var _then = jasmine.createSpy('_then');
     httpBackend.expectDELETE('http://localhost:3001/waypoints/1').respond(200);
