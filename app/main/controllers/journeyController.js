@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['JourneyService', '$location', 'WaypointService', 'MapService',
-    function (JourneyService, $location, WaypointService, MapService) {
+  .controller('JourneyController', ['$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'MapService',
+    function ($cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, MapService) {
       var self = this;
 
       _loadCurrentJourneyFromService();
@@ -31,5 +31,26 @@ angular
 
       function _loadCurrentJourneyFromService () {
         self.journey = JourneyService.getCurrentJourney();
+      }
+
+      self.takePhoto = function () {
+        var options = {
+          quality: 75,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          allowEdit: true,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 300,
+          targetHeight: 300,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: true
+        };
+
+        $cordovaCamera.getPicture(options)
+          .then(function (imageData) {
+            self.imgURI = "data:image/jpeg;base64," + imageData;
+          }, function (err) {
+            console.log("Error:" + error);
+          });
       }
     }]);

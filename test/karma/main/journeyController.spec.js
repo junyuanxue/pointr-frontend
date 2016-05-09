@@ -55,4 +55,8 @@ describe('JourneyController', function () {
     expect(WaypointService.createWaypoint).toHaveBeenCalledWith(mockCurrentJourneyId, mockCurrentLocation);
     //test MapService.addMarker is getting called
   });
+
+  it('takes a photo', function () {
+    //test Camear is being called;
+  });
 });

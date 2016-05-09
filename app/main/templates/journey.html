@@ -7,13 +7,19 @@
 
       <a class="button icon-right ion-plus-round" id="end-journey" href="/#/main/transition">End Journey</a>
     </p>
-    <p>
-      <p id="journey-desc"> {{ ctrl.journey.description }} </p>
-      <div ng-if="ctrl.journey.description === ''">
-        <input type="text" id="edit-desc" placeholder="Describe your journey..." ng-model="descText">
-        <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
-      </div>
-    </p>
+
+    <p id="journey-desc"> {{ ctrl.journey.description }} </p>
+    <div ng-if="ctrl.journey.description === ''">
+      <input type="text" id="edit-desc" placeholder="Describe your journey..." ng-model="descText">
+      <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
+    </div>
+
+    <button class="button button-energized" ng-click="ctrl.takePhoto()">
+      Take Photo
+    </button>
+    <ion-scroll>
+    	  <img ng-src="{{ctrl.imgURI}}">
+    </ion-scroll>
 
   </ion-content>
 </ion-view>
