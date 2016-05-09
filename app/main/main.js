@@ -21,7 +21,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/home.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'HomeController as ctrl'
           }
         }
       })
@@ -30,7 +30,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/journey.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'JourneyController as ctrl'
           }
         }
       })
@@ -40,6 +40,15 @@ angular.module('main', [
           'tab-list': {
             templateUrl: 'main/templates/transition.html',
             // controller: 'SomeCtrl as ctrl'
+          }
+        }
+      })
+      .state('main.journeyback', {
+        url: '/journeyback',
+        views: {
+          'tab-list': {
+            templateUrl: 'main/templates/journeyback.html',
+            controller: 'JourneyBackController as ctrl'
           }
         }
       });

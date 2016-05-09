@@ -2,65 +2,34 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$http', 'JourneyFactory', 'JourneyService', '$location', '$cordovaGeolocation', 'WaypointService',
-      function ($http, JourneyFactory, JourneyService, $location, $cordovaGeolocation, WaypointService) {
+  .controller('JourneyController', ['JourneyService', '$location', 'WaypointService', 'MapService',
+    function (JourneyService, $location, WaypointService, MapService) {
         var self = this;
-        self.startJourney = function () {
-          JourneyService.startJourney().then(function (journey) {
-            $location.path('/main/journey');
-            if (typeof journey !== 'undefined' ) {
-              self.journey = journey;
-              // create a waypoint;
-              // add it to the journey;
-            }
-          });
-        };
-        var options = {timeout: 5000, enableHighAccuracy: true};
-        var watch = $cordovaGeolocation.watchPosition(options);
 
-        watch.then(null, function (err) {
-            console.log(err);
-            console.log('Could not get location');
-        }, function (position) {
-          var lat  = position.coords.latitude;
-          var long = position.coords.longitude;
-          console.log(lat + '' + long);
-        });
-        $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-          console.log(position.coords);
-          var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          var mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          self.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        }, function (error) {
-          console.log(error);
-          console.log('Could not get location');
-        });
-        self.startJourney = function () {
-          JourneyService.startJourney().then(function (journey) {
-            if (typeof journey !== 'undefined' ) {
-              self.journey = journey;
-              self.createWaypoint(self.journey.id);
-            }
-          });
+        _loadCurrentJourneyFromService();
+
+        self.currentLocation = null;
+        MapService.watchLocation();
+        MapService.loadMap();
+
+        self.createWaypoint = function () {
+          self.journey = JourneyService.getCurrentJourney();
+          if (typeof self.journey !== undefined) {
+            self.currentLocation = MapService.getCurrentLocation();
+            WaypointService.createWaypoint(self.journey.id, self.currentLocation)
+              .then(function (waypoint) {
+                self.journey.addWaypoint(waypoint);
+                MapService.addMarker(waypoint);
+              });
+          }
         };
 
-        self.createWaypoint = function (journeyId) {
-          WaypointService.createWaypoint(journeyId).then(function (waypoint) {
-            self.journey.addWaypoint(waypoint);
-          });
+        self.editJourneyDescription = function (descText) {
+          JourneyService.updateJourney(descText)
+            .then(_loadCurrentJourneyFromService);
         };
 
-        self.deleteWaypoint = function (waypoint) {
-          WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
-            waypoint.markAsReached();
-          });
-        };
-
-        self.deleteJourney = function () {
-          JourneyService.deleteJourney(self.journey.id);
-        };
+        function _loadCurrentJourneyFromService() {
+          self.journey = JourneyService.getCurrentJourney();
+        }
       }]);

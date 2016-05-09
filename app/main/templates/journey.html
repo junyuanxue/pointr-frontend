@@ -1,13 +1,16 @@
 <ion-view view-title="Journey">
-  <!-- do you want padding -->
   <ion-content class="padding">
 
-    <!-- content goes here -->
-          <div id="map" data-tap-disabled="true"></div>
+    <div id="map" data-tap-disabled="true"></div>
     <p>
-      <button id="add-waypoint" type="button" name="button">Add Waypoint</button>
+      <a class="button icon-right ion-plus-round" id="add-waypoint" ng-click="ctrl.createWaypoint();">Add Waypoint</a>
 
-      <a class="button icon-right ion-plus-round"  id="end-journey" href="/#/main/transition">End Journey</a>
+      <a class="button icon-right ion-plus-round" id="end-journey" href="/#/main/transition">End Journey</a>
+    </p>
+    <p>
+      <p id="journey-desc"> {{ ctrl.journey.description }} </p>
+      <input type="text" id="edit-desc" placeholder="Describe your journey..." ng-model="descText">
+      <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
     </p>
 
   </ion-content>
