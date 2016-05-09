@@ -6,7 +6,7 @@ angular
     function (JourneyService, $location, WaypointService, MapService) {
         var self = this;
 
-        self.journey = JourneyService.getCurrentJourney();
+        _loadCurrentJourneyFromService();
 
         self.currentLocation = null;
         MapService.watchLocation();
@@ -26,5 +26,10 @@ angular
 
         self.editJourneyDescription = function (descText) {
           JourneyService.updateJourney(descText)
+            .then(_loadCurrentJourneyFromService);
         };
+
+        function _loadCurrentJourneyFromService() {
+          self.journey = JourneyService.getCurrentJourney();
+        }
       }]);

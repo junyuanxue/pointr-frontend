@@ -41,6 +41,7 @@ describe('JourneyService', function () {
     JourneyService.updateJourney('New journey').then(function (response) {
       expect(JourneyService.currentJourney.description).toEqual('New journey');
     });
+    httpBackend.flush();
   });
 
   it('makes a DELETE request to journeys', function () {

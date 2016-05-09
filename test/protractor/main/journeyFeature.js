@@ -14,6 +14,7 @@ describe('journey', function () {
   it('edits the journey description', function () {
     browser.get('/#/main/journey');
     $('#edit-desc').sendKeys('New journey');
+    $('#save-journey-desc').click();
     var journeyDesc = $('#journey-desc');
     expect(journeyDesc.getText()).toEqual('New journey');
   });

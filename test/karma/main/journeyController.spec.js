@@ -21,11 +21,12 @@ describe('JourneyController', function () {
     updateJourney: function (descText) {}
   };
 
-  var ctrl, JourneyService, WaypointService;
+  var ctrl, JourneyService, WaypointService, q;
 
-  beforeEach(angular.mock.inject(function ($controller, _WaypointService_) {
+  beforeEach(angular.mock.inject(function ($q, $controller, _WaypointService_) {
     ctrl = $controller('JourneyController', { MapService: mockMapService, JourneyService: mockJourneyService });
     WaypointService = _WaypointService_;
+    q = $q;
   }));
 
   it('watches the location', function () {
@@ -39,7 +40,7 @@ describe('JourneyController', function () {
   });
 
   it('updates the journey description', function () {
-    spyOn(mockJourneyService, 'updateJourney').and.callThrough();
+    spyOn(mockJourneyService, 'updateJourney').and.returnValue(q.when({}));
     ctrl.editJourneyDescription('New journey');
     expect(mockJourneyService.updateJourney).toHaveBeenCalledWith('New journey');
   });
