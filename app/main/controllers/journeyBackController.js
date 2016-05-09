@@ -2,12 +2,12 @@
 
 angular
   .module('main')
-  .controller('JourneyBackController', ['$location', '$http', 'JourneyFactory', 'JourneyService', 'WaypointService', function ($location, $http, JourneyFactory, JourneyService, WaypointService) {
+  .controller('JourneyBackController', ['$location', 'JourneyService', 'WaypointService', function ($location, JourneyService, WaypointService) {
 
     var self = this;
 
     self.startJourneyBack = function () {
-      $location.path('/main/journeyback');      
+      $location.path('/main/journeyback');
       var journeyId = JourneyService.getCurrentJourney().id;
       JourneyService.getJourney(journeyId).then(function (journey) {
         self.journey = journey;

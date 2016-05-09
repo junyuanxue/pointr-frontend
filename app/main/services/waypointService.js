@@ -16,7 +16,6 @@ angular
       var lng = parseFloat(response.data.longitude);
       var waypoint = new WaypointFactory(lat, lng);
       waypoint.id = response.data.id;
-      console.log(response);
       return waypoint;
     }
 

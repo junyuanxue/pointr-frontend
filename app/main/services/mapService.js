@@ -7,11 +7,12 @@ angular
     var options = {timeout: 25000, enableHighAccuracy: true};
     var watch = $cordovaGeolocation.watchPosition(options);
     self.currentLocation = null;
+    
     self.getCurrentLocation = function () {
         return self.currentLocation;
     };
-    self.watchLocation = function () {
 
+    self.watchLocation = function () {
       watch.then(null, function (err) {
           console.log(err);
       }, function (position) {
@@ -27,6 +28,7 @@ angular
               map: self.map,
       });
     };
+
     self.loadMap = function () {
       $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
         console.log("HELLO FROM MAP");

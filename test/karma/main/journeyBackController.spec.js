@@ -3,19 +3,29 @@
 describe('JourneyBackController', function () {
   beforeEach(module('main'));
 
-  var ctrl, JourneyService, WaypointService;
+  var mockCurrentJourneyId = 3;
 
-  beforeEach(inject(function ($controller, _JourneyService_, _WaypointService_) {
-    ctrl = $controller('JourneyBackController');
-    JourneyService = _JourneyService_;
+  var mockJourneyService = {
+    getCurrentJourney: function () {
+      return { id: mockCurrentJourneyId };
+    },
+    deleteJourney: function (journeyId) {},
+    getJourney: function(journeyId) {}
+  };
+
+  var ctrl, WaypointService, q;
+
+  beforeEach(angular.mock.inject(function ($q, $controller, _WaypointService_) {
+    ctrl = $controller('JourneyBackController', { JourneyService: mockJourneyService });
     WaypointService = _WaypointService_;
+    q = $q;
   }));
 
   it('starts the journey back', function () {
-    var journey = { id: 3 };
-    spyOn(JourneyService, 'getCurrentJourney').andReturn(journey);
+    spyOn(mockJourneyService, 'getCurrentJourney').and.callThrough();
+    spyOn(mockJourneyService, 'getJourney').and.returnValue(q.when({}));
     ctrl.startJourneyBack();
-    expect(JourneyService.getJourney).toHaveBeenCalledWith(3);
+    expect(mockJourneyService.getJourney).toHaveBeenCalledWith(mockCurrentJourneyId);
   });
 
   it('deletes a waypoint in the journey', function () {
@@ -27,8 +37,8 @@ describe('JourneyBackController', function () {
 
   it('deletes a journey when complete', function () {
     ctrl.journey = { id: 3 };
-    spyOn(JourneyService, 'deleteJourney').and.callThrough();
+    spyOn(mockJourneyService, 'deleteJourney').and.callThrough();
     ctrl.deleteJourney();
-    expect(JourneyService.deleteJourney).toHaveBeenCalledWith(ctrl.journey.id);
+    expect(mockJourneyService.deleteJourney).toHaveBeenCalledWith(ctrl.journey.id);
   });
 });

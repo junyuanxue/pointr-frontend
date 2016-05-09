@@ -48,7 +48,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/journeyback.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'JourneyBackController as ctrl'
           }
         }
       });

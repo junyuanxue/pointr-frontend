@@ -2,7 +2,8 @@
 
 describe('Wayback', function () {
   it('creates a new journey', function () {
-    browser.get('/');
+
+    browser.get('/#/main/home');
     $('#create-journey').click();
     var addWaypointButton = $('#add-waypoint');
     var endJourneyButton = $('#end-journey');
@@ -21,6 +22,6 @@ describe('Wayback', function () {
   it('starts the journey back', function () {
     browser.get('/#/main/transition');
     $('#way-back').click();
-    expect(browser.getCurrentUrl()).toEqual('/#/main/journeyback');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/main/journeyback');
   })
 });
