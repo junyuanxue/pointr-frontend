@@ -2,7 +2,7 @@
 
 angular
   .module('main')
-  .controller('JourneyBackController', ['$location', '$http', 'JourneyService', 'WaypointService', function ($location, $http, JourneyService, WaypointService) {
+  .controller('JourneyBackController', ['$location', 'JourneyService', 'WaypointService', function ($location, JourneyService, WaypointService) {
 
     var self = this;
 

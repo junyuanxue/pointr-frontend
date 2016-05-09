@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$http', 'JourneyService', '$location', 'WaypointService', 'MapService',
-    function ($http, JourneyService, $location, WaypointService, MapService) {
+  .controller('JourneyController', ['JourneyService', '$location', 'WaypointService', 'MapService',
+    function (JourneyService, $location, WaypointService, MapService) {
         var self = this;
 
         self.journey = JourneyService.getCurrentJourney();

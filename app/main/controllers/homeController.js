@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('HomeController', ['$http', 'JourneyFactory', 'JourneyService', '$location',
-      function ($http, JourneyFactory, JourneyService, $location) {
+  .controller('HomeController', ['JourneyFactory', 'JourneyService', '$location',
+      function (JourneyFactory, JourneyService, $location) {
         var self = this;
         self.startJourney = function () {
           JourneyService.startJourney().then(function (journey) {
