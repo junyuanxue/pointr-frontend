@@ -15,6 +15,7 @@ describe('JourneyService', function () {
     JourneyService = _JourneyService_;
     httpBackend = $httpBackend;
     httpBackend.whenGET(/main.*/).respond(200, '');
+    JourneyService.currentJourney = { id: 3 };
   }));
 
   it('makes a GET request to journeys', function () {
@@ -36,11 +37,13 @@ describe('JourneyService', function () {
   });
 
   it('makes a PATCH request to journeys', function () {
-
+    httpBackend.expectPATCH('http://localhost:3001/journeys/3').respond(200);
+    JourneyService.updateJourney('New journey').then(function (response) {
+      expect(JourneyService.currentJourney.description).toEqual('New journey');
+    });
   });
 
   it('makes a DELETE request to journeys', function () {
-    JourneyService.currentJourney = { id: 3 };
     httpBackend.expectDELETE('http://localhost:3001/journeys/3').respond(200);
     JourneyService.deleteJourney().then(function (response) {
       expect(JourneyService.currentJourney).toEqual(null);

@@ -4,7 +4,7 @@ angular
   .module('main')
   .service('JourneyService', ['$http', 'JourneyFactory', 'WaypointFactory', function ($http, JourneyFactory, WaypointFactory) {
     var self = this;
-    _clearJourney();
+    _clearCurrentJourney();
 
     self.getCurrentJourney = function () {
       return self.currentJourney;
@@ -41,11 +41,22 @@ angular
       return journey;
     }
 
-    self.deleteJourney = function () {
-      return $http.delete('http://localhost:3001/journeys/' + self.currentJourney.id).then(_clearJourney, _errorCallBack);
+    self.updateJourney = function (descText) {
+      data = { 'journey': { 'description': descText }};
+      return $http.patch('http://localhost:3001/journeys/' + self.currentJourney.id, data)
+        .then(_updateCurrentJourney, _errorCallBack);
     };
 
-    function _clearJourney () {
+    function _updateCurrentJourney () {
+
+    };
+
+    self.deleteJourney = function () {
+      return $http.delete('http://localhost:3001/journeys/' + self.currentJourney.id)
+        .then(_clearCurrentJourney, _errorCallBack);
+    };
+
+    function _clearCurrentJourney () {
       self.currentJourney = null;
     };
 
