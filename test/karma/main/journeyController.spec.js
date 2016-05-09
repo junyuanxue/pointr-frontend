@@ -3,41 +3,48 @@
 describe('JourneyController', function () {
   beforeEach(module('main'));
 
-  beforeEach(function () {
-    module(function($provide) {
-      $provide.service('map', function() {
-        this.watchLocation = jasmine.createSpy('watchLocation').and.callFake(function () {
-        });
-        this.loadMap = jasmine.createSpy('loadMap').and.callFake(function () {
-        });
-      });
-    });
+  var mockCurrentLocation = { latitude: 10.1, longitude: 11.1 };
+  var mockCurrentJourneyId = 3;
 
-    var mockMapService;
+  var mockMapService = {
+    watchLocation: function () {},
+    loadMap: function () {},
+    getCurrentLocation: function () {
+      return mockCurrentLocation;
+    }
+  };
 
-    inject(function(map) {
-      mockMapService = map;
-    });
-  })
+  var mockJourneyService = {
+    getCurrentJourney: function () {
+      return { id: mockCurrentJourneyId };
+    }
+  };
 
-  var ctrl, JourneyService, WaypointService, _MapService;
+  var ctrl, JourneyService, WaypointService;
 
-  beforeEach(inject(function ($controller, _JourneyService_, _WaypointService_, map) {
-    ctrl = $controller('JourneyController');
-    JourneyService = _JourneyService_;
+  beforeEach(angular.mock.inject(function ($controller, _WaypointService_) {
+    ctrl = $controller('JourneyController', { MapService: mockMapService, JourneyService: mockJourneyService });
     WaypointService = _WaypointService_;
-    mockMapService = map;
   }));
 
+  it('watches the location', function () {
+    spyOn(mockMapService, 'watchLocation').and.callThrough();
+    expect(mockMapService.watchLocation).toHaveBeenCalled;
+  });
+
   it('loads the map', function () {
+    spyOn(mockMapService, 'loadMap').and.callThrough();
     expect(mockMapService.loadMap).toHaveBeenCalled;
-  })
+  });
 
   it('adds a waypoint in the journey', function () {
     spyOn(WaypointService, 'createWaypoint').and.callThrough();
-    ctrl.createWaypoint(1);
-    expect(MapService.getCurrentLocation).toHaveBeenCalled;
-    expect(WaypointService.createWaypoint).toHaveBeenCalledWith(1);
-    //test MapService.getCurrentLocation is getting called
+    spyOn(mockMapService, 'getCurrentLocation').and.callThrough();
+    spyOn(mockJourneyService, 'getCurrentJourney').and.callThrough();
+    ctrl.createWaypoint();
+
+    expect(mockMapService.getCurrentLocation).toHaveBeenCalled;
+    expect(WaypointService.createWaypoint).toHaveBeenCalledWith(mockCurrentJourneyId, mockCurrentLocation);
+    //test MapService.addMarker is getting called
   });
 });
