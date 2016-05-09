@@ -6,7 +6,7 @@ describe('WaypointService', function () {
   var WaypointService, httpBackend;
 
   var firstWaypoint = { 'id': 1, 'latitude': '0.1', 'longitude': '1.1' };
-  var coordinates = { latitude: 0.1, longitude: 1.1 }
+  var coordinates = { latitude: 0.1, longitude: 1.1 };
 
   beforeEach(inject(function (_WaypointService_, $httpBackend) {
     WaypointService = _WaypointService_;

@@ -23,5 +23,5 @@ describe('Wayback', function () {
     browser.get('/#/main/transition');
     $('#way-back').click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/main/journeyback');
-  })
+  });
 });

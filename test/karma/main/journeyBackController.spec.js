@@ -9,8 +9,8 @@ describe('JourneyBackController', function () {
     getCurrentJourney: function () {
       return { id: mockCurrentJourneyId };
     },
-    deleteJourney: function (journeyId) {},
-    getJourney: function(journeyId) {}
+    deleteJourney: function () {},
+    getJourney: function () {}
   };
 
   var ctrl, WaypointService, q;

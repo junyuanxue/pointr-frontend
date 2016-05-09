@@ -7,31 +7,31 @@ angular
     var options = {timeout: 25000, enableHighAccuracy: true};
     var watch = $cordovaGeolocation.watchPosition(options);
     self.currentLocation = null;
-    
+
     self.getCurrentLocation = function () {
-        return self.currentLocation;
+      return self.currentLocation;
     };
 
     self.watchLocation = function () {
       watch.then(null, function (err) {
-          console.log(err);
+        return err;
       }, function (position) {
-        console.log(position);
         self.currentLocation = position.coords;
+        return position;
       });
     };
 
     self.addMarker = function (waypoint) {
-      var position = {lat: waypoint.latitude, lng: waypoint.longitude}
-      var marker = new google.maps.Marker({
-              position: position,
-              map: self.map,
+      var position = {lat: waypoint.latitude, lng: waypoint.longitude};
+      new google.maps.Marker({
+        position: position,
+        map: self.map,
       });
     };
 
     self.loadMap = function () {
       $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-        console.log("HELLO FROM MAP");
+        console.log('HELLO FROM MAP');
         self.currentLocation = position.coords;
         var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var mapOptions = {
@@ -42,8 +42,7 @@ angular
         console.log(self.currentLocation);
         self.map = new google.maps.Map(document.getElementById('map'), mapOptions);
       }, function (error) {
-        console.log(error);
-        console.log('Could not get location');
+        console.log(error + ' Could not get location');
       });
     };
   }]);

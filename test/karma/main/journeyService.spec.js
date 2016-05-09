@@ -19,10 +19,10 @@ describe('JourneyService', function () {
 
   it('makes a GET request to journeys', function () {
     httpBackend.expectGET('http://localhost:3001/journeys/1').respond(firstJourney);
-    JourneyService.getJourney(1).then(function (journey) {
+    JourneyService.getJourney(1).then(function () {
       expect(JourneyService.currentJourney.id).toEqual(1);
       expect(JourneyService.currentJourney.waypoints.length).toEqual(2);
-    })
+    });
     httpBackend.flush();
   });
 
