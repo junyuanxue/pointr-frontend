@@ -16,73 +16,22 @@ angular
 
         self.images = [];
 
-        self.addImage = function () {
+        self.takePicture = function () {
           var options = {
-                      		destinationType : Camera.DestinationType.FILE_URI,
+                          quality: 75,
+                      		destinationType : Camera.DestinationType.DATA_URL,
                       		sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
-                      		allowEdit : false,
+                      		allowEdit : true,
+                          targetWidth: 300,
+                          targetHeight: 300,
                       		encodingType: Camera.EncodingType.JPEG,
                       		popoverOptions: CameraPopoverOptions,
+                          saveToPhotoAlbum: false
                         }
           $cordovaCamera.getPicture(options).then(function(imageData) {
-            onImageSuccess(imageData);
-
-            function onImageSuccess(fileURI) {
-              createFileEntry(fileURI);
-            }
-
-            function createFileEntry(fileURI) {
-              window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
-            }
-
-            function copyFile(fileEntry) {
-              var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
-              var newName = makeid() + name;
-
-              window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
-                fileEntry.copyTo(
-                  fileSystem2,
-                  newName,
-                  onCopySuccess,
-                  fail
-                );
-              },
-              fail);
-            }
-
-            function onCopySuccess(entry) {
-              self.$apply(function () {
-                self.images.push(entry.nativeURL);
-              });
-            }
-
-            function fail(error) {
-              console.log("fail: " + error.code);
-            }
-
-            function makeid() {
-              var text = "";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-              for (var i=0; i < 5; i++) {
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-              }
-              return text;
-            }
-
+            self.imgURI = "data:image/jpeg;base64," + imageData;
           }, function(err) {
-            console.log(err);
+
           });
         }
-
-        self.urlForImage = function (imageName) {
-          console.log("get correct path for image");
-        }
-
-        self.urlForImage = function(imageName) {
-          var name = imageName.substr(imageName.lastIndexOf('/') + 1);
-          var trueOrigin = cordova.file.dataDirectory + name;
-          return trueOrigin;
-        }
-
       }]);
