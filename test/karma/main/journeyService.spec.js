@@ -38,7 +38,7 @@ describe('JourneyService', function () {
 
   it('makes a PATCH request to journeys', function () {
     httpBackend.expectPATCH('http://localhost:3001/journeys/3').respond(200);
-    JourneyService.updateJourney('New journey').then(function (response) {
+    JourneyService.updateJourney('New journey').then(function () {
       expect(JourneyService.currentJourney.description).toEqual('New journey');
     });
     httpBackend.flush();
@@ -46,7 +46,7 @@ describe('JourneyService', function () {
 
   it('makes a DELETE request to journeys', function () {
     httpBackend.expectDELETE('http://localhost:3001/journeys/3').respond(200);
-    JourneyService.deleteJourney().then(function (response) {
+    JourneyService.deleteJourney().then(function () {
       expect(JourneyService.currentJourney).toEqual(null);
     });
     httpBackend.flush();

@@ -3,11 +3,11 @@
 describe('JourneyFactory', function () {
   beforeEach(module('main'));
 
-  var journey, journey_with_desc;
+  var journey, journeyWithDesc;
 
   beforeEach(inject(function (JourneyFactory) {
     journey = new JourneyFactory();
-    journey_with_desc = new JourneyFactory('New journey');
+    journeyWithDesc = new JourneyFactory('New journey');
   }));
 
   it('starts with an empty array of waypoints', function () {
@@ -19,7 +19,7 @@ describe('JourneyFactory', function () {
   });
 
   it('adds description', function () {
-    expect(journey_with_desc.description).toEqual('New journey');
+    expect(journeyWithDesc.description).toEqual('New journey');
   });
 
   it('adds a waypoint', function () {

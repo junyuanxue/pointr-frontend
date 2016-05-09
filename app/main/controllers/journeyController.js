@@ -29,7 +29,7 @@ angular
           .then(_loadCurrentJourneyFromService);
       };
 
-      function _loadCurrentJourneyFromService() {
+      function _loadCurrentJourneyFromService () {
         self.journey = JourneyService.getCurrentJourney();
-      };
+      }
     }]);

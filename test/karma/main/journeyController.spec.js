@@ -18,10 +18,10 @@ describe('JourneyController', function () {
     getCurrentJourney: function () {
       return { id: mockCurrentJourneyId };
     },
-    updateJourney: function (descText) {}
+    updateJourney: function () {}
   };
 
-  var ctrl, JourneyService, WaypointService, q;
+  var ctrl, WaypointService, q;
 
   beforeEach(angular.mock.inject(function ($q, $controller, _WaypointService_) {
     ctrl = $controller('JourneyController', { MapService: mockMapService, JourneyService: mockJourneyService });
