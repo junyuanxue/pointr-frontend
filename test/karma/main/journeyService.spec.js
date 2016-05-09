@@ -35,11 +35,16 @@ describe('JourneyService', function () {
     httpBackend.flush();
   });
 
+  it('makes a PATCH request to journeys', function () {
+
+  });
+
   it('makes a DELETE request to journeys', function () {
-    var _then = jasmine.createSpy('_then');
-    httpBackend.expectDELETE('http://localhost:3001/journeys/1').respond(200);
-    JourneyService.deleteJourney(1).then(_then);
+    JourneyService.currentJourney = { id: 3 };
+    httpBackend.expectDELETE('http://localhost:3001/journeys/3').respond(200);
+    JourneyService.deleteJourney().then(function (response) {
+      expect(JourneyService.currentJourney).toEqual(null);
+    });
     httpBackend.flush();
-    expect(_then).toHaveBeenCalled();
   });
 });

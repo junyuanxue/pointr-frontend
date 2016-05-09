@@ -4,9 +4,9 @@ angular
   .module('main')
   .service('JourneyService', ['$http', 'JourneyFactory', 'WaypointFactory', function ($http, JourneyFactory, WaypointFactory) {
     var self = this;
-    self.currentJourney = null;
+    _clearJourney();
 
-    self.getCurrentJourney = function () {      
+    self.getCurrentJourney = function () {
       return self.currentJourney;
     };
 
@@ -29,7 +29,8 @@ angular
     }
 
     self.startJourney = function () {
-      return $http.post('http://localhost:3001/journeys')
+      var data = { 'journey': { 'description': '' } };
+      return $http.post('http://localhost:3001/journeys', data)
         .then(_startJourneyCallBack, _errorCallBack);
     };
 
@@ -40,8 +41,12 @@ angular
       return journey;
     }
 
-    self.deleteJourney = function (journeyId) {
-      return $http.delete('http://localhost:3001/journeys/' + journeyId).then(_successCallBack, _errorCallBack);
+    self.deleteJourney = function () {
+      return $http.delete('http://localhost:3001/journeys/' + self.currentJourney.id).then(_clearJourney, _errorCallBack);
+    };
+
+    function _clearJourney () {
+      self.currentJourney = null;
     };
 
     function _successCallBack () { return; }

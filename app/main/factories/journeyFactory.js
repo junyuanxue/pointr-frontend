@@ -3,8 +3,9 @@
 angular
   .module('main')
   .factory('JourneyFactory', function () {
-    var Journey = function () {
+    var Journey = function (description) {
       this.waypoints = [];
+      this.description = description || '';
     };
 
     Journey.prototype.addWaypoint = function (waypoint) {

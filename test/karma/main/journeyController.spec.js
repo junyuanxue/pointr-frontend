@@ -17,7 +17,8 @@ describe('JourneyController', function () {
   var mockJourneyService = {
     getCurrentJourney: function () {
       return { id: mockCurrentJourneyId };
-    }
+    },
+    updateJourney: function (descText) {}
   };
 
   var ctrl, JourneyService, WaypointService;
@@ -35,6 +36,12 @@ describe('JourneyController', function () {
   it('loads the map', function () {
     spyOn(mockMapService, 'loadMap').and.callThrough();
     expect(mockMapService.loadMap).toHaveBeenCalled;
+  });
+
+  it('updates the journey description', function () {
+    spyOn(mockJourneyService, 'updateJourney').and.callThrough();
+    ctrl.editJourneyDescription('New journey');
+    expect(mockJourneyService.updateJourney).toHaveBeenCalledWith('New journey');
   });
 
   it('adds a waypoint in the journey', function () {

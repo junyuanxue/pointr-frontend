@@ -21,6 +21,6 @@ angular
     };
 
     self.deleteJourney = function () {
-      JourneyService.deleteJourney(self.journey.id);
+      JourneyService.deleteJourney();
     };
   }]);

@@ -23,4 +23,8 @@ angular
               });
           }
         };
+
+        self.editJourneyDescription = function (descText) {
+          JourneyService.updateJourney(descText)
+        };
       }]);
