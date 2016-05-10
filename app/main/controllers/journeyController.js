@@ -34,6 +34,7 @@ angular
         },function (oldLocation, currentLocation) {
 
           var currentWaypoint = $scope.journey.waypoints[0];
+          console.log(currentLocation);
           // $scope.distanceFromWaypoint = distanceBetween(currentLocation, currentWaypoint);
         });
       }
