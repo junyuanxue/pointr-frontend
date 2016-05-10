@@ -60,7 +60,8 @@ describe('JourneyController', function () {
   it('updates the waypoint description', function () {
     spyOn(WaypointService, 'updateWaypoint').and.callThrough();
     ctrl.editWaypointDescription('Cool spot');
-    expect(WaypointService.updateWaypoint).toHaveBeenCalledWith(2, 'Cool spot');
+    var updatedWaypoint = { id: 2, description: 'Cool spot' };
+    expect(WaypointService.updateWaypoint).toHaveBeenCalledWith(updatedWaypoint);
   });
 
   it('get the last waypoint', function () {

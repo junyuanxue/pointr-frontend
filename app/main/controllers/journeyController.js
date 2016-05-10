@@ -32,7 +32,7 @@ angular
       self.editWaypointDescription = function (descText) {
         var lastWaypoint = self.getLastWaypoint();
         lastWaypoint.description = descText;
-        WaypointService.updateWaypoint(lastWaypoint.id, descText);
+        WaypointService.updateWaypoint(lastWaypoint);
       };
 
       self.getLastWaypoint = function () {

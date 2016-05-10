@@ -28,9 +28,10 @@ describe('WaypointService', function () {
   it('makes a PATCH request to waypoints', function () {
     var _then = jasmine.createSpy('_then');
     httpBackend.expectPATCH(DOMAIN + '/waypoints/1').respond(200);
-    WaypointService.updateWaypoint(1, 'Cool spot').then(_then);
-    expect(_then).toHaveBeenCalled;
+    firstWaypoint.description = 'New description';
+    WaypointService.updateWaypoint(firstWaypoint).then(_then);
     httpBackend.flush();
+    expect(_then).toHaveBeenCalled;
   });
 
   it('makes a DELETE request to waypoints', function () {
