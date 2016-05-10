@@ -23,7 +23,6 @@ angular
               waypoint.marker = {};
               waypoint.marker.coords = {latitude: waypoint.latitude, longitude: waypoint.longitude};
               $scope.journey.addWaypoint(waypoint);
-              console.log(waypoint);
             });
         }
       };
@@ -39,7 +38,6 @@ angular
         },function (oldLocation, currentLocation) {
 
           var currentWaypoint = $scope.journey.waypoints[0];
-          console.log(currentLocation);
           // $scope.distanceFromWaypoint = distanceBetween(currentLocation, currentWaypoint);
         });
       }
