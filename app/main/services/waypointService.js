@@ -22,10 +22,8 @@ angular
     }
 
     self.updateWaypoint = function (waypoint) {
-      var data = { 'waypoint': { 'latitude': waypoint.latitude,
-                                 'longitude': waypoint.longitude,
-                                 'description': waypoint.description } };
-      return $http.patch(DOMAIN + '/waypoints/' + waypoint.id).then(_successCallBack, _errorCallBack);
+      var data = { 'waypoint': { 'description': waypoint.description } };
+      return $http.patch(DOMAIN + '/waypoints/' + waypoint.id, data).then(_successCallBack, _errorCallBack);
     };
 
     self.deleteWaypoint = function (waypointId) {
