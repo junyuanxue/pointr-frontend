@@ -1,0 +1,11 @@
+<ion-view view-title="All Journeys">
+  <!-- do you want padding -->
+  <ion-content class="padding">
+
+    <ion-list id="journeys">
+      <ion-item class="journey" ng-repeat="journey in allJourneys" item="item" ng-click="loadJourney({{journey.id}});">
+        {{journey.id}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
