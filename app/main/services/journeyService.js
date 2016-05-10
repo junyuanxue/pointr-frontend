@@ -18,10 +18,16 @@ angular
     };
 
     function _getJourneyCallBack (response) {
-      var journey = _startJourneyCallBack(response);
+      var journey = _parseJourneyData(response);
       journey.waypoints = _parseWaypointData(response.data.waypoints);
       return journey;
-    }
+    };
+
+    function _parseJourneyData (response) {
+      var journey = new JourneyFactory(response.data.journey.description);
+      journey.id = response.data.journey.id;
+      return journey;
+    };
 
     function _parseWaypointData (wpArray) {
       return wpArray.map(function (wpData) {
@@ -38,14 +44,14 @@ angular
     };
 
     function _startJourneyCallBack (response) {
-      var journey = new JourneyFactory(response.data.journey.description);
-      journey.id = response.data.journey.id;
+      var journey = new JourneyFactory();
+      journey.id = response.data.id;
       self.currentJourney = journey;
       return journey;
     }
 
     self.updateJourney = function (journeyId, descText) {
-      var data = { 'journey': { 'description': descText }};
+      var data = { 'journey': { 'description': descText } };
       return $http.patch(DOMAIN + '/journeys/' + journeyId, data)
         .then(_successCallBack, _errorCallBack);
     };

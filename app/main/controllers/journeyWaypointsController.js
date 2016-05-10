@@ -6,17 +6,12 @@ angular
     function (JourneyService, $location, $stateParams) {
         var self = this;
 
-        console.log("hhhhiii")
-
         self.getAllJourneyWaypoints = function () {
           var journeyId = parseInt($stateParams.journeyId);
-          console.log(journeyId);
-
           return JourneyService.getJourney(journeyId).then(function (journey) {
             if (typeof journey !== 'undefined' ) {
-              self.journey = journey
+              self.journey = journey;
               self.allJourneyWaypoints = journey.waypoints;
-              console.log(self.journey.description)
             }
           });
         };
