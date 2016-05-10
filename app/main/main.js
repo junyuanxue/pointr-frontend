@@ -3,8 +3,15 @@ angular.module('main', [
   'ionic',
   'ngCordova',
   'ui.router',
+  'uiGmapgoogle-maps',
   // TODO: load other modules selected during generation
-])
+]).config(function(uiGmapGoogleMapApiProvider) {
+        uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyBCbmCVzXuxZa8CvmJbctfWOdCn9wjhtiE',
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'weather,geometry,visualization'
+        });
+    })
 .config(function ($stateProvider, $urlRouterProvider) {
 
   // ROUTING with ui.router
@@ -16,7 +23,7 @@ angular.module('main', [
       abstract: true,
       templateUrl: 'main/templates/tabs.html'
     })
-      .state('main.home', {
+    .state('main.home', {
         url: '/home',
         views: {
           'tab-list': {
@@ -34,12 +41,12 @@ angular.module('main', [
           }
         }
       })
-      .state('main.transition', {
-        url: '/transition',
+      .state('main.journeys', {
+        url: '/journeys',
         views: {
           'tab-list': {
-            templateUrl: 'main/templates/transition.html',
-            // controller: 'SomeCtrl as ctrl'
+            templateUrl: 'main/templates/journeys.html',
+            controller: 'AllJourneysController as ctrl'
           }
         }
       })
@@ -56,7 +63,10 @@ angular.module('main', [
         }
       })
       .state('main.journeyback', {
-        url: '/journeyback',
+        url: '/journeyback/{journeyId}',
+        controller: function ($stateParams) {
+          $stateParams.journeyId
+        },
         views: {
           'tab-list': {
             templateUrl: 'main/templates/journeyback.html',
