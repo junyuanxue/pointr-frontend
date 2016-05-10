@@ -27,6 +27,10 @@ describe('WaypointFactory', function () {
     expect(waypointWithDesc.description).toEqual('Cool spot');
   });
 
+  it('starts with an empty imageURI', function () {
+    expect(waypoint.URI).toEqual(null);
+  });
+
   it('is not reached by default', function () {
     expect(waypoint.reached).toBeFalse;
   });

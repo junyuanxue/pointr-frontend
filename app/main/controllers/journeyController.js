@@ -60,7 +60,6 @@ angular
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
             self.imgURI = "data:image/jpeg;base64," + imageData;
-
             _showPhotoToast();
 
             var waypoints = self.journey.waypoints;

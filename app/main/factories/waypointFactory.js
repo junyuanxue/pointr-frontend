@@ -7,6 +7,7 @@ angular
       this.latitude = latitude;
       this.longitude = longitude;
       this.description = description || '';
+      this.imageURI = null;
       this.reached = false;
     };
 
