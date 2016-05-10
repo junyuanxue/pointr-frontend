@@ -34,7 +34,7 @@ angular
     };
 
     self.getAllJourneys = function () {
-      return $http.get('http://localhost:3001/journeys/').then(_getAllJourneysCallback, _errorCallBack);
+      return $http.get(DOMAIN + '/journeys/').then(_getAllJourneysCallback, _errorCallBack);
     };
 
     function _getAllJourneysCallback (response) {
