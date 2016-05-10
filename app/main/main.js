@@ -50,6 +50,18 @@ angular.module('main', [
           }
         }
       })
+      .state('main.journeywaypoints', {
+        url: '/journeys/{journeyId}/waypoints',
+        controller: function ($stateParams) {
+          $stateParams.journeyId
+        },
+        views: {
+          'tab-list': {
+            templateUrl: 'main/templates/journeywaypoints.html',
+            controller: 'JourneyWaypointsController as ctrl'
+          }
+        }
+      })
       .state('main.journeyback', {
         url: '/journeyback/{journeyId}',
         controller: function ($stateParams) {

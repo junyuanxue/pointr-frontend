@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$scope', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
-    function ($scope, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
+  .controller('JourneyController', ['$scope', '$cordovaToast', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
+    function ($scope, $cordovaToast, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
 
       _loadCurrentJourneyFromService();
 
@@ -28,6 +28,11 @@ angular
         }
       };
 
+      $scope.editJourneyDescription = function (descText) {
+        $scope.journey.description = descText;
+        JourneyService.updateJourney($scope.journey.id, descText);
+      }
+
       function watchLocation() {
         $scope.$watch(function () {
           return LocationService.getCurrentLocation();
@@ -38,11 +43,6 @@ angular
           // $scope.distanceFromWaypoint = distanceBetween(currentLocation, currentWaypoint);
         });
       }
-
-      $scope.editJourneyDescription = function (descText) {
-        $scope.journey.description = descText;
-        JourneyService.updateJourney(descText);
-      };
 
       $scope.editWaypointDescription = function (descText) {
         var lastWaypoint = $scope.getLastWaypoint();
@@ -75,9 +75,20 @@ angular
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            _showPhotoToast();
+
+            var waypoints = $scope.journey.waypoints;
+            var lastWaypoint = waypoints[waypoints.length - 1];
+            lastWaypoint.updateImageURI("data:image/jpeg;base64," + imageData);
+
           }, function (err) {
             console.log("Error:" + error);
           });
-      }
+      };
+
+      function _showPhotoToast () {
+        $cordovaToast
+          .show('Picture added!', 'long', 'center');
+      };
 
     }]);

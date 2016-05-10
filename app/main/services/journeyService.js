@@ -14,29 +14,35 @@ angular
     };
 
     self.getJourney = function (journeyId) {
-      return $http.get(DOMAIN + '/journeys/' + journeyId).then(_getJourneyCallBack, _errorCallBack);
+      return $http.get(DOMAIN + '/journeys/' + journeyId)
+        .then(_getJourneyCallBack, _errorCallBack);
     };
 
     function _getJourneyCallBack (response) {
-      var journey = _startJourneyCallBack(response);
+      var journey = _parseJourneyData(response);
       journey.waypoints = _parseWaypointData(response.data.waypoints);
+      self.currentJourney = journey;
       return journey;
-    }
+    };
+
+    function _parseJourneyData (response) {
+      var journey = new JourneyFactory(response.data.journey.description);
+      journey.id = response.data.journey.id;
+      return journey;
+    };
 
     self.getAllJourneys = function () {
       return $http.get('http://localhost:3001/journeys/').then(_getAllJourneysCallback, _errorCallBack);
     };
 
     function _getAllJourneysCallback (response) {
-      console.log(response);
-      var journeys = createJourneys(response.data);
+      var journeys = _createJourneys(response.data);
       return journeys;
     }
 
     function _parseWaypointData (wpArray) {
       return wpArray.map(function (wpData) {
-        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude);
-        waypoint.id = wpData.id;
+        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude, wpData.description, wpData.id);
         return waypoint;
       });
     }
@@ -54,14 +60,14 @@ angular
       return journey;
     }
 
-    self.updateJourney = function (descText) {
-      var data = { 'journey': { 'description': descText }};
-      return $http.patch(DOMAIN + '/journeys/' + self.currentJourney.id, data)
+    self.updateJourney = function (journeyId, descText) {
+      var data = { 'journey': { 'description': descText } };
+      return $http.patch(DOMAIN + '/journeys/' + journeyId, data)
         .then(_successCallBack, _errorCallBack);
     };
 
-    self.deleteJourney = function () {
-      return $http.delete(DOMAIN + '/journeys/' + self.currentJourney.id)
+    self.deleteJourney = function (journeyId) {
+      return $http.delete(DOMAIN + '/journeys/' + journeyId)
         .then(_clearCurrentJourney, _errorCallBack);
     };
 
@@ -74,9 +80,9 @@ angular
     function _errorCallBack (err) { return err; }
 
 
-    function createJourneys(journeyArray){
+    function _createJourneys(journeyArray){
       var journeys = journeyArray.map(function (journey) {
-        var journeyObject = new JourneyFactory('', journey.id);
+        var journeyObject = new JourneyFactory(journey.description, journey.id);
         return journeyObject;
       });
       return journeys;
