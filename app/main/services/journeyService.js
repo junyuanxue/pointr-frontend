@@ -5,7 +5,9 @@ angular
   .service('JourneyService', ['$http', 'JourneyFactory', 'WaypointFactory', function ($http, JourneyFactory, WaypointFactory) {
     var self = this;
 
-    var DOMAIN = 'http://localhost:3001';
+    var DOMAIN = 'https://wayback-junyuanx-2.c9users.io';
+
+    // var DOMAIN = 'http://localhost:3001';
 
     _clearCurrentJourney();
 

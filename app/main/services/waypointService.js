@@ -5,7 +5,7 @@ angular
   .service('WaypointService', ['$http', 'WaypointFactory', function ($http, WaypointFactory) {
     var self = this;
 
-    var DOMAIN = 'http://localhost:3001';
+    var DOMAIN = 'https://wayback-junyuanx-2.c9users.io';
 
     self.createWaypoint = function (journeyId, coordinates) {
       var data = { 'waypoint': { 'latitude': coordinates.latitude, 'longitude': coordinates.longitude } };
