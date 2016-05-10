@@ -44,7 +44,7 @@ angular.module('main', [
       .state('main.journeys', {
         url: '/journeys',
         views: {
-          'tab-list': {
+          'tab-journeys': {
             templateUrl: 'main/templates/journeys.html',
             controller: 'AllJourneysController as ctrl'
           }
