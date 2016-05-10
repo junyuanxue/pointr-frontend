@@ -17,8 +17,8 @@ angular
         };
 
         $scope.loadJourneyWaypoints = function (journeyId) {
-          $location.path('/main/journeys/' + journeyId + '/waypoints');
+          $location.path('/main/' + journeyId + '/waypoints');
         };
-        
+
         $scope.allJourneys = $scope.getAllJourneys();
 }]);
