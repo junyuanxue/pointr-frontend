@@ -12,8 +12,6 @@ angular
             if (typeof journey !== 'undefined' ) {
               self.journey = journey;
               self.allJourneyWaypoints = journey.waypoints;
-
-              console.log(journey.waypoints[0]);
             }
           });
         };

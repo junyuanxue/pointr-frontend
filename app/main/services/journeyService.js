@@ -14,12 +14,14 @@ angular
     };
 
     self.getJourney = function (journeyId) {
-      return $http.get(DOMAIN + '/journeys/' + journeyId).then(_getJourneyCallBack, _errorCallBack);
+      return $http.get(DOMAIN + '/journeys/' + journeyId)
+        .then(_getJourneyCallBack, _errorCallBack);
     };
 
     function _getJourneyCallBack (response) {
       var journey = _parseJourneyData(response);
       journey.waypoints = _parseWaypointData(response.data.waypoints);
+      self.currentJourney = journey;
       return journey;
     };
 
