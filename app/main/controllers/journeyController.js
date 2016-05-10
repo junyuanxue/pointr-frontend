@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['JourneyService', '$location', 'WaypointService', 'MapService',
-    function (JourneyService, $location, WaypointService, MapService) {
+  .controller('JourneyController', ['$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'MapService',
+    function ($cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, MapService) {
       var self = this;
 
       _loadCurrentJourneyFromService();
@@ -25,11 +25,43 @@ angular
       };
 
       self.editJourneyDescription = function (descText) {
-        JourneyService.updateJourney(descText)
-          .then(_loadCurrentJourneyFromService);
+        self.journey.description = descText;
+        JourneyService.updateJourney(descText);
+      };
+
+      self.editWaypointDescription = function (descText) {
+        var lastWaypoint = self.getLastWaypoint();
+        lastWaypoint.description = descText;
+        WaypointService.updateWaypoint(lastWaypoint);
+      };
+
+      self.getLastWaypoint = function () {
+        var waypoints = self.journey.waypoints;
+        return waypoints[waypoints.length - 1];
       };
 
       function _loadCurrentJourneyFromService () {
         self.journey = JourneyService.getCurrentJourney();
+      }
+
+      self.takePhoto = function () {
+        var options = {
+          quality: 75,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          allowEdit: true,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 300,
+          targetHeight: 300,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: true
+        };
+
+        $cordovaCamera.getPicture(options)
+          .then(function (imageData) {
+            self.imgURI = "data:image/jpeg;base64," + imageData;
+          }, function (err) {
+            console.log("Error:" + error);
+          });
       }
     }]);

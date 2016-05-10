@@ -2,7 +2,9 @@
 
 describe('JourneyService', function () {
   beforeEach(module('main'));
+  
   var JourneyService, httpBackend;
+  var DOMAIN = 'http://localhost:3001';
 
   var firstJourney = { 'id': 1,
                        'waypoints': [
@@ -19,7 +21,7 @@ describe('JourneyService', function () {
   }));
 
   it('makes a GET request to journeys', function () {
-    httpBackend.expectGET('http://localhost:3001/journeys/1').respond(firstJourney);
+    httpBackend.expectGET(DOMAIN + '/journeys/1').respond(firstJourney);
     JourneyService.getJourney(1).then(function () {
       expect(JourneyService.currentJourney.id).toEqual(1);
       expect(JourneyService.currentJourney.waypoints.length).toEqual(2);
@@ -28,7 +30,7 @@ describe('JourneyService', function () {
   });
 
   it('makes a POST request to journeys', function () {
-    httpBackend.expectPOST('http://localhost:3001/journeys').respond(firstJourney);
+    httpBackend.expectPOST(DOMAIN + '/journeys').respond(firstJourney);
     JourneyService.startJourney()
       .then(function (journey) {
         expect(journey.id).toEqual(1);
@@ -37,15 +39,15 @@ describe('JourneyService', function () {
   });
 
   it('makes a PATCH request to journeys', function () {
-    httpBackend.expectPATCH('http://localhost:3001/journeys/3').respond(200);
-    JourneyService.updateJourney('New journey').then(function () {
-      expect(JourneyService.currentJourney.description).toEqual('New journey');
-    });
+    var _then = jasmine.createSpy('_then');
+    httpBackend.expectPATCH(DOMAIN + '/journeys/3').respond(200);
+    JourneyService.updateJourney('New journey').then(_then);
+    expect(_then).toHaveBeenCalled;
     httpBackend.flush();
   });
 
   it('makes a DELETE request to journeys', function () {
-    httpBackend.expectDELETE('http://localhost:3001/journeys/3').respond(200);
+    httpBackend.expectDELETE(DOMAIN + '/journeys/3').respond(200);
     JourneyService.deleteJourney().then(function () {
       expect(JourneyService.currentJourney).toEqual(null);
     });

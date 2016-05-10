@@ -5,6 +5,7 @@ angular
   .controller('HomeController', ['JourneyFactory', 'JourneyService', '$location',
       function (JourneyFactory, JourneyService, $location) {
         var self = this;
+
         self.startJourney = function () {
           JourneyService.startJourney().then(function (journey) {
             if (typeof journey !== 'undefined' ) {

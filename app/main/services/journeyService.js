@@ -4,6 +4,9 @@ angular
   .module('main')
   .service('JourneyService', ['$http', 'JourneyFactory', 'WaypointFactory', function ($http, JourneyFactory, WaypointFactory) {
     var self = this;
+
+    var DOMAIN = 'http://localhost:3001';
+
     _clearCurrentJourney();
 
     self.getCurrentJourney = function () {
@@ -11,7 +14,7 @@ angular
     };
 
     self.getJourney = function (journeyId) {
-      return $http.get('http://localhost:3001/journeys/' + journeyId).then(_getJourneyCallBack, _errorCallBack);
+      return $http.get(DOMAIN + '/journeys/' + journeyId).then(_getJourneyCallBack, _errorCallBack);
     };
 
     function _getJourneyCallBack (response) {
@@ -30,7 +33,7 @@ angular
 
     self.startJourney = function () {
       var data = { 'journey': { 'description': '' } };
-      return $http.post('http://localhost:3001/journeys', data)
+      return $http.post(DOMAIN + '/journeys', data)
         .then(_startJourneyCallBack, _errorCallBack);
     };
 
@@ -43,17 +46,12 @@ angular
 
     self.updateJourney = function (descText) {
       var data = { 'journey': { 'description': descText }};
-      return $http.patch('http://localhost:3001/journeys/' + self.currentJourney.id, data)
-        .then(_updateCurrentJourney, _errorCallBack);
+      return $http.patch(DOMAIN + '/journeys/' + self.currentJourney.id, data)
+        .then(_successCallBack, _errorCallBack);
     };
 
-    function _updateCurrentJourney (response) {
-      var description = response.config.data.journey.description;
-      return self.currentJourney.description = description;
-    }
-
     self.deleteJourney = function () {
-      return $http.delete('http://localhost:3001/journeys/' + self.currentJourney.id)
+      return $http.delete(DOMAIN + '/journeys/' + self.currentJourney.id)
         .then(_clearCurrentJourney, _errorCallBack);
     };
 
@@ -61,7 +59,7 @@ angular
       self.currentJourney = null;
     }
 
-    function _errorCallBack (err) {
-      return err;
-    }
+    function _successCallBack (err) { return; }
+
+    function _errorCallBack (err) { return err; }
   }]);
