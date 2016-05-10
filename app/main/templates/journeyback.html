@@ -1,9 +1,12 @@
-<ion-view view-title="Journey">
+<ion-view view-title="Journey Back">
+  <!-- do you want padding -->
   <ion-content class="padding">
 
-    <p>
-      Going home! :D
-    </p>
-
+    <!-- content goes here -->
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-marker coords="waypoint.coords" idkey="waypoint.id" ng-repeat="waypoint in journey.waypoints">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+    <div id="distance">{{distanceFromWaypoint | number : 1}}</div>
   </ion-content>
 </ion-view>

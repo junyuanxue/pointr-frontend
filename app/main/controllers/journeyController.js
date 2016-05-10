@@ -2,49 +2,63 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'MapService',
-    function ($cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, MapService) {
-      var self = this;
+  .controller('JourneyController', ['$scope', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
+    function ($scope, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
 
       _loadCurrentJourneyFromService();
 
-      self.currentLocation = null;
-      MapService.watchLocation();
-      MapService.loadMap();
+      $scope.currentLocation = null;
+      LocationService.watchLocation();
+      $scope.map = {center: {latitude: 51.51, longitude: -0.071}, zoom: 15 };
+      watchLocation();
 
-      self.createWaypoint = function () {
-        self.journey = JourneyService.getCurrentJourney();
-        if (typeof self.journey !== undefined) {
-          self.currentLocation = MapService.getCurrentLocation();
-          WaypointService.createWaypoint(self.journey.id, self.currentLocation)
+      var currentLocation = LocationService.getCurrentLocation();
+      console.log(currentLocation);
+      $scope.createWaypoint = function () {
+        console.log('Clicked');
+        $scope.journey = JourneyService.getCurrentJourney();
+        if (typeof $scope.journey !== undefined) {
+          WaypointService.createWaypoint($scope.journey.id, LocationService.getCurrentLocation())
             .then(function (waypoint) {
-              self.journey.addWaypoint(waypoint);
-              MapService.addMarker(waypoint);
+              waypoint.marker = {};
+              waypoint.marker.coords = {latitude: waypoint.latitude, longitude: waypoint.longitude};
+              $scope.journey.addWaypoint(waypoint);
+              console.log(waypoint);
             });
         }
       };
 
-      self.editJourneyDescription = function (descText) {
-        self.journey.description = descText;
+      function watchLocation() {
+        $scope.$watch(function () {
+          return LocationService.getCurrentLocation();
+        },function (oldLocation, currentLocation) {
+
+          var currentWaypoint = $scope.journey.waypoints[0];
+          // $scope.distanceFromWaypoint = distanceBetween(currentLocation, currentWaypoint);
+        });
+      }
+
+      $scope.editJourneyDescription = function (descText) {
+        $scope.journey.description = descText;
         JourneyService.updateJourney(descText);
       };
 
-      self.editWaypointDescription = function (descText) {
-        var lastWaypoint = self.getLastWaypoint();
+      $scope.editWaypointDescription = function (descText) {
+        var lastWaypoint = $scope.getLastWaypoint();
         lastWaypoint.description = descText;
         WaypointService.updateWaypoint(lastWaypoint);
       };
 
-      self.getLastWaypoint = function () {
-        var waypoints = self.journey.waypoints;
+      $scope.getLastWaypoint = function () {
+        var waypoints = $scope.journey.waypoints;
         return waypoints[waypoints.length - 1];
       };
 
       function _loadCurrentJourneyFromService () {
-        self.journey = JourneyService.getCurrentJourney();
+        $scope.journey = JourneyService.getCurrentJourney();
       }
 
-      self.takePhoto = function () {
+      $scope.takePhoto = function () {
         var options = {
           quality: 75,
           destinationType: Camera.DestinationType.DATA_URL,
@@ -59,9 +73,10 @@ angular
 
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
-            self.imgURI = "data:image/jpeg;base64," + imageData;
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
           }, function (err) {
             console.log("Error:" + error);
           });
       }
+
     }]);
