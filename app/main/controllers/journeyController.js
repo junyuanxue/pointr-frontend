@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'MapService',
-    function ($cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, MapService) {
+  .controller('JourneyController', ['$cordovaToast', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'MapService',
+    function ($cordovaToast, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, MapService) {
       var self = this;
 
       _loadCurrentJourneyFromService();
@@ -42,7 +42,7 @@ angular
 
       function _loadCurrentJourneyFromService () {
         self.journey = JourneyService.getCurrentJourney();
-      }
+      };
 
       self.takePhoto = function () {
         var options = {
@@ -60,8 +60,21 @@ angular
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
             self.imgURI = "data:image/jpeg;base64," + imageData;
+
+            _showPhotoToast();
+
+            var waypoints = self.journey.waypoints;
+            var lastWaypoint = waypoints[waypoints.length - 1];
+            lastWaypoint.imageURI = "data:image/jpeg;base64," + imageData;
+
           }, function (err) {
             console.log("Error:" + error);
           });
-      }
+      };
+
+      function _showPhotoToast () {
+        $cordovaToast
+          .show('Picture added!', 'long', 'center');
+      };
+
     }]);
