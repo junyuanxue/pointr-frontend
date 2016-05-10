@@ -36,15 +36,13 @@ angular
     };
 
     function _getAllJourneysCallback (response) {
-      console.log(response);
-      var journeys = createJourneys(response.data);
+      var journeys = _createJourneys(response.data);
       return journeys;
     }
 
     function _parseWaypointData (wpArray) {
       return wpArray.map(function (wpData) {
-        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude, wpData.description);
-        waypoint.id = wpData.id;
+        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude, wpData.description, wpData.id);
         return waypoint;
       });
     }
@@ -82,9 +80,9 @@ angular
     function _errorCallBack (err) { return err; }
 
 
-    function createJourneys(journeyArray){
+    function _createJourneys(journeyArray){
       var journeys = journeyArray.map(function (journey) {
-        var journeyObject = new JourneyFactory('', journey.id);
+        var journeyObject = new JourneyFactory(journey.description, journey.id);
         return journeyObject;
       });
       return journeys;

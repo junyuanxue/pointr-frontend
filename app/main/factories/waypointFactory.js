@@ -8,7 +8,7 @@ angular
       this.description = description || '';
       this.imageURI = null;
       this.reached = false;
-      this.id = id
+      this.id = id;
     };
 
     Waypoint.prototype.updateImageURI = function (path) {

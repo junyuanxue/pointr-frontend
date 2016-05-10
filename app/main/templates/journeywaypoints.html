@@ -5,7 +5,7 @@
     <p> {{ ctrl.journey.description === '' ? 'journey' : ctrl.journey.description }} </p>
 
     <ion-list>
-      <ion-item class="waypoint" ng-repeat="waypoint in ctrl.allJourneyWaypoints" item="item" ng-click="ctrl.loadWaypoint({{ waypoint.id }});">
+      <ion-item class="waypoint" ng-repeat="waypoint in ctrl.allJourneyWaypoints" item="item">
         <img ng-src="{{ waypoint.imgURI }}">
         <span>{{ waypoint.description === '' ? 'waypoint' : waypoint.description }}</span>
       </ion-item>

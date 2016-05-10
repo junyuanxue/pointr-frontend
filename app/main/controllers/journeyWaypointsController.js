@@ -4,6 +4,7 @@ angular
   .module('main')
   .controller('JourneyWaypointsController', ['JourneyService', '$location', '$stateParams',
     function (JourneyService, $location, $stateParams) {
+
         var self = this;
 
         self.getAllJourneyWaypoints = function () {
@@ -11,7 +12,7 @@ angular
           return JourneyService.getJourney(journeyId).then(function (journey) {
             if (typeof journey !== 'undefined' ) {
               self.journey = journey;
-              self.allJourneyWaypoints = journey.waypoints;
+              return self.allJourneyWaypoints = journey.waypoints;
             }
           });
         };

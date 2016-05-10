@@ -10,7 +10,7 @@ describe('JourneyController', function () {
     JourneyService = _JourneyService_;
   }));
 
-  xit('gets all waypoints of a journey', function () {
-    //test JourneyService.getJourney is being called with current journey id
+  xit('gets all journeys', function () {
+    //test JourneyService.getAllJourneys is being called
   });
 });
