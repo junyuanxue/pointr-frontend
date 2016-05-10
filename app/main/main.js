@@ -41,17 +41,20 @@ angular.module('main', [
           }
         }
       })
-      .state('main.transition', {
-        url: '/transition',
+      .state('main.journeys', {
+        url: '/journeys',
         views: {
           'tab-list': {
-            templateUrl: 'main/templates/transition.html',
-            // controller: 'SomeCtrl as ctrl'
+            templateUrl: 'main/templates/journeys.html',
+            controller: 'AllJourneysController as ctrl'
           }
         }
       })
       .state('main.journeyback', {
-        url: '/journeyback',
+        url: '/journeyback/{journeyId}',
+        controller: function ($stateParams) {
+          $stateParams.journeyId
+        },
         views: {
           'tab-list': {
             templateUrl: 'main/templates/journeyback.html',

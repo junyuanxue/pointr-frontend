@@ -23,6 +23,16 @@ angular
       return journey;
     }
 
+    self.getAllJourneys = function () {
+      return $http.get('http://localhost:3001/journeys/').then(_getAllJourneysCallback, _errorCallBack);
+    };
+
+    function _getAllJourneysCallback (response) {
+      console.log(response);
+      var journeys = createJourneys(response.data);
+      return journeys;
+    }
+
     function _parseWaypointData (wpArray) {
       return wpArray.map(function (wpData) {
         var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude);
@@ -62,4 +72,13 @@ angular
     function _successCallBack (err) { return; }
 
     function _errorCallBack (err) { return err; }
+
+
+    function createJourneys(journeyArray){
+      var journeys = journeyArray.map(function (journey) {
+        var journeyObject = new JourneyFactory('', journey.id);
+        return journeyObject;
+      });
+      return journeys;
+    }
   }]);
