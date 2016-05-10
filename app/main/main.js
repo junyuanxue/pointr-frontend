@@ -51,7 +51,7 @@ angular.module('main', [
         }
       })
       .state('main.journeywaypoints', {
-        url: '/journeys/{journeyId}/waypoints',
+        url: '/{journeyId}/waypoints',
         controller: function ($stateParams) {
           $stateParams.journeyId
         },
