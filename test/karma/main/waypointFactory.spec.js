@@ -28,7 +28,12 @@ describe('WaypointFactory', function () {
   });
 
   it('starts with an empty imageURI', function () {
-    expect(waypoint.URI).toEqual(null);
+    expect(waypoint.imageURI).toEqual(null);
+  });
+
+  it('updates the imageURI', function () {
+    waypoint.updateImageURI('data:image/jpeg;64,/1');
+    expect(waypoint.imageURI).toEqual('data:image/jpeg;64,/1');
   });
 
   it('is not reached by default', function () {

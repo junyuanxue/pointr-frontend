@@ -20,7 +20,7 @@ angular
       });
     };
 
-    self.deleteJourney = function () {
-      JourneyService.deleteJourney();
+    self.deleteJourney = function (journeyId) {
+      JourneyService.deleteJourney(journeyId);
     };
   }]);

@@ -30,7 +30,7 @@ angular
       return $http.delete(DOMAIN + '/waypoints/' + waypointId).then(_successCallBack, _errorCallBack);
     };
 
-    function _successCallBack () { console.log("WAYPOINT UPDATED!") }
+    function _successCallBack () { return; }
 
     function _errorCallBack () { return; }
   }]);

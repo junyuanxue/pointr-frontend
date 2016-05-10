@@ -1,0 +1,15 @@
+<ion-view view-title="All Waypoints">
+  <!-- do you want padding -->
+
+  <ion-content class="padding">
+    <p> {{ ctrl.journey.description }} </p>
+
+    <ion-list>
+      <ion-item class="waypoint" ng-repeat="waypoint in ctrl.allJourneyWaypoints" item="item" ng-click="ctrl.loadWaypoint({{ waypoint.id }});">
+        <img ng-src="{{ waypoint.imgURI }}">
+        <span>{{ waypoint.description }}</span>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

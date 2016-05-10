@@ -25,7 +25,7 @@ angular
 
     function _parseWaypointData (wpArray) {
       return wpArray.map(function (wpData) {
-        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude);
+        var waypoint = new WaypointFactory(wpData.latitude, wpData.longitude, wpData.description);
         waypoint.id = wpData.id;
         return waypoint;
       });
@@ -38,20 +38,20 @@ angular
     };
 
     function _startJourneyCallBack (response) {
-      var journey = new JourneyFactory();
-      journey.id = response.data.id;
+      var journey = new JourneyFactory(response.data.journey.description);
+      journey.id = response.data.journey.id;
       self.currentJourney = journey;
       return journey;
     }
 
-    self.updateJourney = function (descText) {
+    self.updateJourney = function (journeyId, descText) {
       var data = { 'journey': { 'description': descText }};
-      return $http.patch(DOMAIN + '/journeys/' + self.currentJourney.id, data)
+      return $http.patch(DOMAIN + '/journeys/' + journeyId, data)
         .then(_successCallBack, _errorCallBack);
     };
 
-    self.deleteJourney = function () {
-      return $http.delete(DOMAIN + '/journeys/' + self.currentJourney.id)
+    self.deleteJourney = function (journeyId) {
+      return $http.delete(DOMAIN + '/journeys/' + journeyId)
         .then(_clearCurrentJourney, _errorCallBack);
     };
 

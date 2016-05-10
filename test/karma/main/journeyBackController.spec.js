@@ -36,9 +36,8 @@ describe('JourneyBackController', function () {
   });
 
   it('deletes a journey when complete', function () {
-    ctrl.journey = { id: 3 };
     spyOn(mockJourneyService, 'deleteJourney').and.callThrough();
-    ctrl.deleteJourney();
-    expect(mockJourneyService.deleteJourney).toHaveBeenCalled;
+    ctrl.deleteJourney(3);
+    expect(mockJourneyService.deleteJourney).toHaveBeenCalledWith(3);
   });
 });

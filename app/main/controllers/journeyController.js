@@ -26,7 +26,7 @@ angular
 
       self.editJourneyDescription = function (descText) {
         self.journey.description = descText;
-        JourneyService.updateJourney(descText);
+        JourneyService.updateJourney(self.journey.id, descText);
       };
 
       self.editWaypointDescription = function (descText) {
@@ -64,7 +64,9 @@ angular
 
             var waypoints = self.journey.waypoints;
             var lastWaypoint = waypoints[waypoints.length - 1];
-            lastWaypoint.imageURI = "data:image/jpeg;base64," + imageData;
+            lastWaypoint.updateImageURI("data:image/jpeg;base64," + imageData);
+
+            console.log(lastWaypoint);
 
           }, function (err) {
             console.log("Error:" + error);

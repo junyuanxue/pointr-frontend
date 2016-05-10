@@ -2,7 +2,7 @@
 
 describe('JourneyService', function () {
   beforeEach(module('main'));
-  
+
   var JourneyService, httpBackend;
   var DOMAIN = 'http://localhost:3001';
 
@@ -41,14 +41,14 @@ describe('JourneyService', function () {
   it('makes a PATCH request to journeys', function () {
     var _then = jasmine.createSpy('_then');
     httpBackend.expectPATCH(DOMAIN + '/journeys/3').respond(200);
-    JourneyService.updateJourney('New journey').then(_then);
+    JourneyService.updateJourney(3, 'New journey').then(_then);
     expect(_then).toHaveBeenCalled;
     httpBackend.flush();
   });
 
   it('makes a DELETE request to journeys', function () {
     httpBackend.expectDELETE(DOMAIN + '/journeys/3').respond(200);
-    JourneyService.deleteJourney().then(function () {
+    JourneyService.deleteJourney(3).then(function () {
       expect(JourneyService.currentJourney).toEqual(null);
     });
     httpBackend.flush();
