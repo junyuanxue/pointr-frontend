@@ -5,9 +5,11 @@ angular
   .service('WaypointService', ['$http', 'WaypointFactory', function ($http, WaypointFactory) {
     var self = this;
 
+    var DOMAIN = 'https://wayback-junyuanx-2.c9users.io';
+
     self.createWaypoint = function (journeyId, coordinates) {
-      var data = {'waypoint': {'latitude': coordinates.latitude, 'longitude': coordinates.longitude}};
-      return $http.post('http://localhost:3001/journeys/' + journeyId + '/waypoints', data)
+      var data = { 'waypoint': { 'latitude': coordinates.latitude, 'longitude': coordinates.longitude } };
+      return $http.post(DOMAIN + '/journeys/' + journeyId + '/waypoints', data)
         .then(_createWaypointCallBack, _errorCallBack);
     };
 
@@ -19,8 +21,13 @@ angular
       return waypoint;
     }
 
+    self.updateWaypoint = function (waypoint) {
+      var data = { 'waypoint': { 'description': waypoint.description } };
+      return $http.patch(DOMAIN + '/waypoints/' + waypoint.id, data).then(_successCallBack, _errorCallBack);
+    };
+
     self.deleteWaypoint = function (waypointId) {
-      return $http.delete('http://localhost:3001/waypoints/' + waypointId).then(_successCallBack, _errorCallBack);
+      return $http.delete(DOMAIN + '/waypoints/' + waypointId).then(_successCallBack, _errorCallBack);
     };
 
     function _successCallBack () { return; }

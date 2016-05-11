@@ -1,19 +1,37 @@
 <ion-view view-title="Journey">
   <ion-content class="padding">
 
-    <div id="map" data-tap-disabled="true"></div>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-marker coords="waypoint.coords" idkey="waypoint.id" ng-repeat="waypoint in journey.waypoints">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
     <p>
-      <a class="button icon-right ion-plus-round" id="add-waypoint" ng-click="ctrl.createWaypoint();">Add Waypoint</a>
+      <button class="button button-assertive icon-right ion-plus-round" id="add-waypoint" ng-click="createWaypoint();">Add Waypoint</button>
 
-      <a class="button icon-right ion-plus-round" id="end-journey" href="/#/main/transition">End Journey</a>
+      <button class="button button-assertive icon-right ion-plus-round" id="end-journey" ng-click="loadAllJourneys();">End Journey</button>
     </p>
-    <p>
-      <p id="journey-desc"> {{ ctrl.journey.description }} </p>
-      <div ng-if="ctrl.journey.description === ''">
-        <input type="text" id="edit-desc" placeholder="Describe your journey..." ng-model="descText">
-        <button id="save-journey-desc" class="button button-stable" ng-click="ctrl.editJourneyDescription(descText);">Save</button>
+
+    <p id="journey-desc"> {{ journey.description }} </p>
+    <div ng-if="journey.description === ''">
+      <input type="text" id="edit-journey-desc" placeholder="Describe your journey..." ng-model="descText">
+      <button id="save-journey-desc" class="button button-stable" ng-click="editJourneyDescription(descText);">Save</button>
+    </div>
+
+    <div ng-if="getLastWaypoint() !== undefined">
+      <p id="wp-desc"> {{ getLastWaypoint().description }} </p>
+      <div ng-if="getLastWaypoint().description === ''">
+        <input type="text" id="add-wp-desc" placeholder="What's special about this spot?" ng-model="descText">
+        <button id="save-wp-desc" class="button button-stable" ng-click="editWaypointDescription(descText);">Save</button>
       </div>
-    </p>
+    </div>
+
+    <button class="button button-energized" ng-click="takePhoto()">
+      Take Photo
+    </button>
+    <ion-scroll>
+    	  <img ng-src="{{ctrl.imgURI}}">
+        {{ ctrl.imgURI; }}
+    </ion-scroll>
 
   </ion-content>
 </ion-view>

@@ -13,10 +13,18 @@ describe('journey', function () {
 
   it('edits the journey description', function () {
     browser.get('/#/main/journey');
-    $('#edit-desc').sendKeys('New journey');
+    $('#edit-journey-desc').sendKeys('New journey');
     $('#save-journey-desc').click();
     var journeyDesc = $('#journey-desc');
     expect(journeyDesc.getText()).toEqual('New journey');
+  });
+
+  it('adds description to waypoint', function () {
+    browser.get('/#/main/journey');
+    $('#add-wp-desc').sendKeys('Cool spot');
+    $('#save-wp-desc').click();
+    var waypointDesc = $('#wp-desc');
+    expect(waypointDesc.getText()).toEqual('Cool spot');
   });
 
   it('ends the journey', function () {

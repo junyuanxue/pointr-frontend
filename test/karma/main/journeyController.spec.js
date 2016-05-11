@@ -23,10 +23,10 @@ describe('JourneyController', function () {
 
   var ctrl, WaypointService, q;
 
-  beforeEach(angular.mock.inject(function ($q, $controller, _WaypointService_) {
+  beforeEach(angular.mock.inject(function ($controller, _WaypointService_) {
     ctrl = $controller('JourneyController', { MapService: mockMapService, JourneyService: mockJourneyService });
     WaypointService = _WaypointService_;
-    q = $q;
+    ctrl.journey = { id: 1, waypoints: [ { id: 1 }, { id: 2 } ] };
   }));
 
   it('watches the location', function () {
@@ -40,9 +40,9 @@ describe('JourneyController', function () {
   });
 
   it('updates the journey description', function () {
-    spyOn(mockJourneyService, 'updateJourney').and.returnValue(q.when({}));
+    spyOn(mockJourneyService, 'updateJourney').and.callThrough();
     ctrl.editJourneyDescription('New journey');
-    expect(mockJourneyService.updateJourney).toHaveBeenCalledWith('New journey');
+    expect(mockJourneyService.updateJourney).toHaveBeenCalledWith(1, 'New journey');
   });
 
   it('adds a waypoint in the journey', function () {
@@ -55,4 +55,20 @@ describe('JourneyController', function () {
     expect(WaypointService.createWaypoint).toHaveBeenCalledWith(mockCurrentJourneyId, mockCurrentLocation);
     //test MapService.addMarker is getting called
   });
+
+  it('updates the waypoint description', function () {
+    spyOn(WaypointService, 'updateWaypoint').and.callThrough();
+    ctrl.editWaypointDescription('Cool spot');
+    var updatedWaypoint = { id: 2, description: 'Cool spot' };
+    expect(WaypointService.updateWaypoint).toHaveBeenCalledWith(updatedWaypoint);
+  });
+
+  it('get the last waypoint', function () {
+    expect(ctrl.getLastWaypoint().id).toEqual(2);
+  });
+
+  xit('takes a photo', function () {
+    //test Camear is being called;
+  });
+
 });

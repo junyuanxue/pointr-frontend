@@ -1,0 +1,19 @@
+<ion-view view-title="All Journeys">
+  <!-- do you want padding -->
+  <ion-content class="padding">
+
+    <ion-list id="journeys">
+      <ion-item class="journey" ng-repeat="journey in allJourneys" item="item">
+        <p>
+          {{ journey.description === '' ? 'journey ' + journey.id : journey.description }}
+        </p>
+        <button class="button button-small button-assertive" ng-click="loadJourney({{ journey.id }});">
+          Find my way back
+        </button>
+        <button class="button button-small button-outline button-assertive" ng-click="loadJourneyWaypoints({{ journey.id }});">
+          See all waypoints
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

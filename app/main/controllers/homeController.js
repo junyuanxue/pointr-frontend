@@ -9,7 +9,6 @@ angular
           JourneyService.startJourney().then(function (journey) {
             if (typeof journey !== 'undefined' ) {
               $location.path('/main/journey');
-              self.journey = journey;
             }
           });
         };
