@@ -1,8 +1,9 @@
 <ion-view view-title="All Waypoints">
   <!-- do you want padding -->
 
-  <ion-content class="padding">
-    <p> {{ ctrl.journey.description === '' ? 'journey' : ctrl.journey.description }} </p>
+  <ion-content>
+    <div></div>
+    <h2> {{ ctrl.journey.description === '' ? 'journey' : ctrl.journey.description }} </h2>
 
     <ion-list>
       <ion-item class="waypoint" ng-repeat="waypoint in ctrl.allJourneyWaypoints" item="item">
