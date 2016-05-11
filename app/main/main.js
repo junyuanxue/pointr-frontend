@@ -26,7 +26,7 @@ angular.module('main', [
     .state('main.home', {
         url: '/home',
         views: {
-          'tab-list': {
+          'tab-home': {
             templateUrl: 'main/templates/home.html',
             controller: 'HomeController as ctrl'
           }
