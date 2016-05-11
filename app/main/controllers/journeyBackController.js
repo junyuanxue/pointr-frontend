@@ -73,9 +73,15 @@ angular
           if (isCloseEnoughToWaypoint()) {
             changeCurrentWaypoint();
           }
-          $scope.distanceFromWaypoint = distanceBetween(currentLocation, $scope.currentWaypoint.coords);
+          $scope.distanceFromWaypoint = _displayDistanceBetween(currentLocation, $scope.currentWaypoint.coords);
         });
       }
+
+      function _displayDistanceBetween(location, waypoint) {
+        var distance = distanceBetween(location, waypoint);
+        var roundedDistance = Math.round(distance);
+        return roundedDistance + 'm to your next waypoint';
+      };
 
       function getFirstWaypoint() {
         reverseWaypoints();
