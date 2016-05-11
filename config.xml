@@ -21,7 +21,7 @@
     </platform>
     <platform name="ios">
         <feature name="Geolocation">
-          <param name="ios-package" value="CDVLocation" />
+            <param name="ios-package" value="CDVLocation" />
         </feature>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
@@ -29,4 +29,5 @@
     <engine name="ios" spec="~4.1.1" />
     <engine name="android" spec="~5.1.1" />
     <plugin name="cordova-plugin-device" spec="~1.1.2" />
+    <plugin name="cordova-plugin-x-toast" spec="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
 </widget>
