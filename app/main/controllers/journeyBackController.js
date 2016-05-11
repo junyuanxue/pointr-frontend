@@ -6,7 +6,6 @@ angular
     function ($cordovaToast, $scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
 
       $scope.distanceFromWaypoint = '';
-      $scope.reachWaypointNotification = '';
 
       $scope.startJourneyBack = function () {
         var journeyId = parseInt($stateParams.journeyId);
@@ -27,7 +26,6 @@ angular
 
       function markAsReached (waypoint) {
         WaypointService.deleteWaypoint(waypoint.id).then(function () {
-          $scope.distanceFromWaypoint = '';
           waypoint.markAsReached();
         });
       }
@@ -97,8 +95,6 @@ angular
 
       function changeCurrentWaypoint () {
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
-
-        $scope.reachWaypointNotification = 'Reached waypoint!';
         $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
         // $cordovaToast.showLongBottom('Reached waypoint!');
 

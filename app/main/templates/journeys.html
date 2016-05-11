@@ -7,7 +7,7 @@
         <p>
           {{ journey.description === '' ? 'journey ' + journey.id : journey.description }}
         </p>
-        <div id="buttons">
+        <div id="all-journeys-buttons">
           <button class="button button-small button-assertive icon-right ion-android-walk" ng-click="loadJourney({{ journey.id }});">
             Journey Back
           </button>
