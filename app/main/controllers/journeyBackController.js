@@ -12,7 +12,7 @@ angular
           $scope.map = {center: {latitude: 51.51, longitude: -0.071}, zoom: 15 };
           LocationService.watchLocation();
           $scope.currentWaypoint = getFirstWaypoint();;
-
+          console.log($scope.journey.waypoints);
           watchLocation();
         });
       };
@@ -23,7 +23,9 @@ angular
 
       $scope.startJourneyBack();
       var markAsReached = function (waypoint) {
-        WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
+        WaypointService.deleteWaypoint(waypoint.id).then(function (response) {
+          console.log(waypoint);
+          waypoint.icon = {url: "//maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
           waypoint.markAsReached();
         });
       };
@@ -73,7 +75,7 @@ angular
         console.log($scope.journey.waypoints.indexOf($scope.currentWaypoint));
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
-        if ((currentWaypointIndex) > - 1 && (nextWaypointIndex !== ($scope.journey.waypoints.length -1))){
+        if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length -1))){
           $scope.currentWaypoint = $scope.journey.waypoints[currentWaypointIndex + 1];
         }
       }
