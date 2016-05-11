@@ -5,13 +5,13 @@ angular.module('main', [
   'ui.router',
   'uiGmapgoogle-maps',
   // TODO: load other modules selected during generation
-]).config(function(uiGmapGoogleMapApiProvider) {
-        uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyBCbmCVzXuxZa8CvmJbctfWOdCn9wjhtiE',
-            v: '3.20', //defaults to latest 3.X anyhow
-            libraries: 'weather,geometry,visualization'
-        });
-    })
+]).config(function (uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    key: 'AIzaSyBCbmCVzXuxZa8CvmJbctfWOdCn9wjhtiE',
+    v: '3.20', //defaults to latest 3.X anyhow
+    libraries: 'weather,geometry,visualization'
+  });
+})
 .config(function ($stateProvider, $urlRouterProvider) {
 
   // ROUTING with ui.router
@@ -24,14 +24,14 @@ angular.module('main', [
       templateUrl: 'main/templates/tabs.html'
     })
     .state('main.home', {
-        url: '/home',
-        views: {
-          'tab-home': {
-            templateUrl: 'main/templates/home.html',
-            controller: 'HomeController as ctrl'
-          }
+      url: '/home',
+      views: {
+        'tab-home': {
+          templateUrl: 'main/templates/home.html',
+          controller: 'HomeController as ctrl'
         }
-      })
+      }
+    })
       .state('main.journey', {
         url: '/journey',
         views: {
@@ -53,7 +53,7 @@ angular.module('main', [
       .state('main.journeywaypoints', {
         url: '/{journeyId}/waypoints',
         controller: function ($stateParams) {
-          $stateParams.journeyId
+          $stateParams.journeyId;
         },
         views: {
           'tab-list': {
@@ -65,7 +65,7 @@ angular.module('main', [
       .state('main.journeyback', {
         url: '/journeyback/{journeyId}',
         controller: function ($stateParams) {
-          $stateParams.journeyId
+          $stateParams.journeyId;
         },
         views: {
           'tab-list': {

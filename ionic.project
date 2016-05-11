@@ -1,12 +1,4 @@
 {
   "name": "waybackApp",
-  "app_id": "54f8e3d3",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "app_id": "60ec3885"
 }
