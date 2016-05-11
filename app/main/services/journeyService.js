@@ -23,13 +23,13 @@ angular
       journey.waypoints = _parseWaypointData(response.data.waypoints);
       self.currentJourney = journey;
       return journey;
-    };
+    }
 
     function _parseJourneyData (response) {
       var journey = new JourneyFactory(response.data.journey.description);
       journey.id = response.data.journey.id;
       return journey;
-    };
+    }
 
     self.getAllJourneys = function () {
       return $http.get(DOMAIN + '/journeys/').then(_getAllJourneysCallback, _errorCallBack);
@@ -80,7 +80,7 @@ angular
     function _errorCallBack (err) { return err; }
 
 
-    function _createJourneys(journeyArray){
+    function _createJourneys (journeyArray) {
       var journeys = journeyArray.map(function (journey) {
         var journeyObject = new JourneyFactory(journey.description, journey.id);
         return journeyObject;

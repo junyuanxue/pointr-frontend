@@ -20,4 +20,4 @@ angular
         return position;
       });
     };
-}]);
+  }]);
