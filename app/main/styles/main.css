@@ -82,3 +82,23 @@ input {
   margin-left: 0.25em;
   margin-right: 0.25em;
 }
+
+/*Journey Waypoints Page*/
+
+h2 {
+  color: rgb(228, 33, 18);
+  text-align: center;
+}
+
+/*Journey Back Page*/
+
+#journey-back p {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 1.5em;
+  color: #666;
+}
+
+#journey-back span {
+  color: rgb(228, 33, 18);
+}
