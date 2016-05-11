@@ -1,0 +1,196 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'cordona',
+1 verbose cli   'ionic' ]
+2 info using npm@2.14.20
+3 info using node@v4.4.1
+4 verbose install initial load of /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/package.json
+5 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/browser-sync/package.json
+6 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/chalk/package.json
+7 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/cordova/package.json
+8 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/del/package.json
+9 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/elementtree/package.json
+10 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/eslint/package.json
+11 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp/package.json
+12 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-angular-filesort/package.json
+13 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-autoprefixer/package.json
+14 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-changed/package.json
+15 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-csso/package.json
+16 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-eslint/package.json
+17 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-filter/package.json
+18 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-htmlmin/package.json
+19 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-if/package.json
+20 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-imagemin/package.json
+21 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-inject/package.json
+22 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-jsonlint/package.json
+23 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-load-plugins/package.json
+24 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-natural-sort/package.json
+25 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-ng-annotate/package.json
+26 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-plumber/package.json
+27 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-protractor/package.json
+28 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-rename/package.json
+29 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-sass/package.json
+30 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-shell/package.json
+31 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-size/package.json
+32 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-sourcemaps/package.json
+33 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-uglify/package.json
+34 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/gulp-useref/package.json
+35 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/ios-deploy/package.json
+36 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/jasmine-core/package.json
+37 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/karma/package.json
+38 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/karma-angular-filesort/package.json
+39 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/karma-jasmine/package.json
+40 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/karma-ng-html2js-preprocessor/package.json
+41 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/karma-phantomjs-launcher/package.json
+42 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/lodash/package.json
+43 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/main-bower-files/package.json
+44 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/minimist/package.json
+45 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/phantomjs-prebuilt/package.json
+46 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/plist/package.json
+47 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/proxy-middleware/package.json
+48 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/require-dir/package.json
+49 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/vinyl-paths/package.json
+50 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/wiredep/package.json
+51 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/xml2js/package.json
+52 verbose installManyTop reading scoped package data from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/node_modules/yeoman-test/package.json
+53 info package.json elementtree@0.1.6 No license field.
+54 info package.json gulp-jsonlint@1.1.2 No license field.
+55 info package.json gulp-rename@1.2.2 No license field.
+56 info package.json ios-deploy@1.8.6 license should be a valid SPDX license expression
+57 verbose readDependencies loading dependencies from /Users/junyuanxue/Desktop/Makers/final-project/waybackApp/package.json
+58 silly cache add args [ 'cordona', null ]
+59 verbose cache add spec cordona
+60 silly cache add args [ 'ionic', null ]
+61 verbose cache add spec ionic
+62 silly cache add parsed spec Result {
+62 silly cache add   raw: 'cordona',
+62 silly cache add   scope: null,
+62 silly cache add   name: 'cordona',
+62 silly cache add   rawSpec: '',
+62 silly cache add   spec: 'latest',
+62 silly cache add   type: 'tag' }
+63 silly addNamed cordona@latest
+64 verbose addNamed "latest" is being treated as a dist-tag for cordona
+65 info addNameTag [ 'cordona', 'latest' ]
+66 silly mapToRegistry name cordona
+67 silly mapToRegistry using default registry
+68 silly mapToRegistry registry https://registry.npmjs.org/
+69 silly mapToRegistry uri https://registry.npmjs.org/cordona
+70 verbose addNameTag registry:https://registry.npmjs.org/cordona not in flight; fetching
+71 silly cache add parsed spec Result {
+71 silly cache add   raw: 'ionic',
+71 silly cache add   scope: null,
+71 silly cache add   name: 'ionic',
+71 silly cache add   rawSpec: '',
+71 silly cache add   spec: 'latest',
+71 silly cache add   type: 'tag' }
+72 silly addNamed ionic@latest
+73 verbose addNamed "latest" is being treated as a dist-tag for ionic
+74 info addNameTag [ 'ionic', 'latest' ]
+75 silly mapToRegistry name ionic
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry uri https://registry.npmjs.org/ionic
+79 verbose addNameTag registry:https://registry.npmjs.org/ionic not in flight; fetching
+80 verbose request uri https://registry.npmjs.org/cordona
+81 verbose request no auth needed
+82 info attempt registry request try #1 at 11:02:30 PM
+83 verbose request id 0ecb1327e0b68e6e
+84 http request GET https://registry.npmjs.org/cordona
+85 verbose request uri https://registry.npmjs.org/ionic
+86 verbose request no auth needed
+87 info attempt registry request try #1 at 11:02:30 PM
+88 verbose etag "B3KI53MOJ2OGQ3XZPTDE0Z1A5"
+89 http request GET https://registry.npmjs.org/ionic
+90 http 304 https://registry.npmjs.org/ionic
+91 verbose headers { date: 'Tue, 10 May 2016 22:02:30 GMT',
+91 verbose headers   via: '1.1 varnish',
+91 verbose headers   'cache-control': 'max-age=300',
+91 verbose headers   etag: '"B3KI53MOJ2OGQ3XZPTDE0Z1A5"',
+91 verbose headers   age: '22',
+91 verbose headers   connection: 'keep-alive',
+91 verbose headers   'x-served-by': 'cache-ams4132-AMS',
+91 verbose headers   'x-cache': 'HIT',
+91 verbose headers   'x-cache-hits': '1',
+91 verbose headers   'x-timer': 'S1462917750.254156,VS0,VE0',
+91 verbose headers   vary: 'Accept-Encoding' }
+92 silly get cb [ 304,
+92 silly get   { date: 'Tue, 10 May 2016 22:02:30 GMT',
+92 silly get     via: '1.1 varnish',
+92 silly get     'cache-control': 'max-age=300',
+92 silly get     etag: '"B3KI53MOJ2OGQ3XZPTDE0Z1A5"',
+92 silly get     age: '22',
+92 silly get     connection: 'keep-alive',
+92 silly get     'x-served-by': 'cache-ams4132-AMS',
+92 silly get     'x-cache': 'HIT',
+92 silly get     'x-cache-hits': '1',
+92 silly get     'x-timer': 'S1462917750.254156,VS0,VE0',
+92 silly get     vary: 'Accept-Encoding' } ]
+93 verbose etag https://registry.npmjs.org/ionic from cache
+94 verbose get saving ionic to /Users/junyuanxue/.npm/registry.npmjs.org/ionic/.cache.json
+95 verbose correctMkdir /Users/junyuanxue/.npm correctMkdir not in flight; initializing
+96 silly addNameTag next cb for ionic with tag latest
+97 silly addNamed ionic@1.7.14
+98 verbose addNamed "1.7.14" is a plain semver version for ionic
+99 silly cache afterAdd ionic@1.7.14
+100 verbose afterAdd /Users/junyuanxue/.npm/ionic/1.7.14/package/package.json not in flight; writing
+101 verbose correctMkdir /Users/junyuanxue/.npm correctMkdir not in flight; initializing
+102 verbose afterAdd /Users/junyuanxue/.npm/ionic/1.7.14/package/package.json written
+103 http 404 https://registry.npmjs.org/cordona
+104 verbose headers { 'content-type': 'application/json',
+104 verbose headers   'cache-control': 'max-age=0',
+104 verbose headers   'content-length': '2',
+104 verbose headers   'accept-ranges': 'bytes',
+104 verbose headers   date: 'Tue, 10 May 2016 22:02:30 GMT',
+104 verbose headers   via: '1.1 varnish',
+104 verbose headers   age: '0',
+104 verbose headers   connection: 'keep-alive',
+104 verbose headers   'x-served-by': 'cache-ams4120-AMS',
+104 verbose headers   'x-cache': 'MISS',
+104 verbose headers   'x-cache-hits': '0',
+104 verbose headers   'x-timer': 'S1462917750.225383,VS0,VE393',
+104 verbose headers   vary: 'Accept-Encoding' }
+105 silly get cb [ 404,
+105 silly get   { 'content-type': 'application/json',
+105 silly get     'cache-control': 'max-age=0',
+105 silly get     'content-length': '2',
+105 silly get     'accept-ranges': 'bytes',
+105 silly get     date: 'Tue, 10 May 2016 22:02:30 GMT',
+105 silly get     via: '1.1 varnish',
+105 silly get     age: '0',
+105 silly get     connection: 'keep-alive',
+105 silly get     'x-served-by': 'cache-ams4120-AMS',
+105 silly get     'x-cache': 'MISS',
+105 silly get     'x-cache-hits': '0',
+105 silly get     'x-timer': 'S1462917750.225383,VS0,VE393',
+105 silly get     vary: 'Accept-Encoding' } ]
+106 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/cordona
+106 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+106 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+106 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+106 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:199:22)
+106 verbose stack     at emitTwo (events.js:87:13)
+106 verbose stack     at Request.emit (events.js:172:7)
+106 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1036:10)
+106 verbose stack     at emitOne (events.js:82:20)
+106 verbose stack     at Request.emit (events.js:169:7)
+106 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:963:12)
+107 verbose statusCode 404
+108 verbose pkgid cordona
+109 verbose cwd /Users/junyuanxue/Desktop/Makers/final-project/waybackApp
+110 error Darwin 15.0.0
+111 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save-dev" "cordona" "ionic"
+112 error node v4.4.1
+113 error npm  v2.14.20
+114 error code E404
+115 error 404 Registry returned 404 for GET on https://registry.npmjs.org/cordona
+115 error 404
+115 error 404 'cordona' is not in the npm registry.
+115 error 404 You should bug the author to publish it (or use the name yourself!)
+115 error 404
+115 error 404 Note that you can also install from a
+115 error 404 tarball, folder, http url, or git url.
+116 verbose exit [ 1, true ]

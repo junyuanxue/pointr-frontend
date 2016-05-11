@@ -23,6 +23,10 @@ angular
               waypoint.marker = {};
               waypoint.marker.coords = {latitude: waypoint.latitude, longitude: waypoint.longitude};
               $scope.journey.addWaypoint(waypoint);
+
+              $cordovaToast
+                .show('Dropped pin', 'long', 'center');
+
             });
         }
       };
@@ -51,6 +55,10 @@ angular
       $scope.getLastWaypoint = function () {
         var waypoints = $scope.journey.waypoints;
         return waypoints[waypoints.length - 1];
+      };
+
+      $scope.loadAllJourneys = function () {
+        $location.path('/main/journeys');
       };
 
       function _loadCurrentJourneyFromService () {
