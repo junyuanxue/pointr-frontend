@@ -4,7 +4,9 @@ angular
   .module('main')
   .controller('JourneyBackController', ['$scope', 'JourneyFactory', 'JourneyService', 'WaypointService', '$stateParams', 'LocationService',
     function ($scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
+
       $scope.distanceFromWaypoint = 'Not Started';
+
       $scope.startJourneyBack = function () {
         var journeyId = parseInt($stateParams.journeyId);
         JourneyService.getJourney(journeyId).then(function (journey) {
@@ -12,7 +14,6 @@ angular
           $scope.map = {center: {latitude: 51.51, longitude: -0.071}, zoom: 15 };
           LocationService.watchLocation();
           $scope.currentWaypoint = getFirstWaypoint();;
-
           watchLocation();
         });
       };
@@ -23,7 +24,8 @@ angular
 
       $scope.startJourneyBack();
       var markAsReached = function (waypoint) {
-        WaypointService.deleteWaypoint(waypoint.id).then(function (waypoint) {
+        WaypointService.deleteWaypoint(waypoint.id).then(function (response) {
+          waypoint.icon = {url: "//maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
           waypoint.markAsReached();
         });
       };
@@ -49,12 +51,37 @@ angular
           return LocationService.getCurrentLocation();
         },function (oldLocation, currentLocation) {
           $scope.currentLocation = currentLocation;
+
+          console.log($scope.currentLocation);
+
+          $scope.currentLocation.center = {
+            latitude: $scope.currentLocation.latitude,
+            longitude: $scope.currentLocation.longitude
+          };
+
+          $scope.currentLocation.stroke = {
+            color: '#66CCFF',
+            weight: 1,
+            opacity: 0.8
+          };
+
+          $scope.currentLocation.fill = {
+            color: '#66CCFF',
+            opacity: 0.6
+          };
+
           if (isCloseEnoughToWaypoint()) {
             changeCurrentWaypoint();
           }
-          $scope.distanceFromWaypoint = distanceBetween(currentLocation, $scope.currentWaypoint.coords);
+          $scope.distanceFromWaypoint = _displayDistanceBetween(currentLocation, $scope.currentWaypoint.coords);
         });
       }
+
+      function _displayDistanceBetween(location, waypoint) {
+        var distance = distanceBetween(location, waypoint);
+        var roundedDistance = Math.round(distance);
+        return roundedDistance + 'm to your next waypoint';
+      };
 
       function getFirstWaypoint() {
         reverseWaypoints();
@@ -73,7 +100,7 @@ angular
         console.log($scope.journey.waypoints.indexOf($scope.currentWaypoint));
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
-        if ((currentWaypointIndex) > - 1 && (nextWaypointIndex !== ($scope.journey.waypoints.length -1))){
+        if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length -1))){
           $scope.currentWaypoint = $scope.journey.waypoints[currentWaypointIndex + 1];
         }
       }

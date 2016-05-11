@@ -4,8 +4,10 @@
 
     <!-- content goes here -->
     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-      <ui-gmap-marker coords="waypoint.coords" idkey="waypoint.id" ng-repeat="waypoint in journey.waypoints">
+        <ui-gmap-marker coords="waypoint.coords" idkey="waypoint.id" ng-repeat="waypoint in journey.waypoints" icon='waypoint.icon'>
         </ui-gmap-marker>
+        <ui-gmap-circle center="currentLocation.center" radius="100" fill="currentLocation.fill" stroke="currentLocation.stroke" editable="true" visible="true">
+        </ui-gmap-circle>
     </ui-gmap-google-map>
     <div id="distance">{{distanceFromWaypoint}}</div>
   </ion-content>
