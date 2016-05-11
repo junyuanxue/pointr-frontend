@@ -71,7 +71,7 @@ angular
       $scope.takePhoto = function () {
         var options = {
           quality: 75,
-          destinationType: Camera.DestinationType.DATA_URL,
+          destinationType: Camera.DestinationType.FILE_URL,
           sourceType: Camera.PictureSourceType.CAMERA,
           allowEdit: true,
           encodingType: Camera.EncodingType.JPEG,
