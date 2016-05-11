@@ -9,7 +9,9 @@
         <ui-gmap-circle center="currentLocation.center" radius="100" fill="currentLocation.fill" stroke="currentLocation.stroke" editable="true" visible="true">
         </ui-gmap-circle>
     </ui-gmap-google-map>
-    
+
+    <p>{{reachWaypointNotification}}</p>
+
     <div ng-if="distanceFromWaypoint === ''">
       <p>Waiting for GPS...</p>
     </div>

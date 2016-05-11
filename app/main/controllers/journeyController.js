@@ -13,8 +13,11 @@ angular
       watchLocation();
 
       var currentLocation = LocationService.getCurrentLocation();
+
       $scope.createWaypoint = function () {
+
         $scope.journey = JourneyService.getCurrentJourney();
+
         if (typeof $scope.journey !== undefined) {
           WaypointService.createWaypoint($scope.journey.id, LocationService.getCurrentLocation())
             .then(function (waypoint) {
@@ -35,11 +38,7 @@ angular
       function watchLocation () {
         $scope.$watch(function () {
           return LocationService.getCurrentLocation();
-        }, function (oldLocation, currentLocation) {
-
-          var currentWaypoint = $scope.journey.waypoints[0];
-          // $scope.distanceFromWaypoint = distanceBetween(currentLocation, currentWaypoint);
-        });
+        }, function (oldLocation, currentLocation) {});
       }
 
       $scope.editWaypointDescription = function (descText) {
@@ -63,13 +62,13 @@ angular
 
       $scope.takePhoto = function () {
         var options = {
-          quality: 75,
-          destinationType: Camera.DestinationType.FILE_URL,
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
           sourceType: Camera.PictureSourceType.CAMERA,
           allowEdit: true,
           encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 300,
-          targetHeight: 300,
+          targetWidth: 100,
+          targetHeight: 100,
           popoverOptions: CameraPopoverOptions,
           saveToPhotoAlbum: true
         };
