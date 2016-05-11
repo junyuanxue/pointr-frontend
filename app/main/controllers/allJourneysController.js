@@ -7,7 +7,7 @@ angular
         $scope.getAllJourneys = function () {
           JourneyService.getAllJourneys().then(function (journeys) {
             if (typeof journeys !== 'undefined' ) {
-              $scope.allJourneys = journeys;
+              $scope.allJourneys = journeys.reverse();
             }
           });
         };
