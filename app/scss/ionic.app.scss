@@ -104,11 +104,9 @@ input {
 
 h2 {
   text-align: center;
-}
-
-.red {
   color: rgb(228, 33, 18);
 }
+
 
 /*Journey Back Page*/
 
@@ -117,4 +115,8 @@ h2 {
   margin-top: 1.5em;
   font-size: 1.5em;
   color: #666;
+}
+
+span, #reach-wp {
+  color: rgb(228, 33, 18);
 }

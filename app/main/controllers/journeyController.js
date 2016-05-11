@@ -9,10 +9,11 @@ angular
 
       $scope.currentLocation = null;
       LocationService.watchLocation();
-      $scope.map = {center: {latitude: 51.51, longitude: -0.071}, zoom: 15 };
+      var currentLocation = LocationService.getCurrentLocation();
+      $scope.map = {center: {latitude: 51.517334, longitude: -0.073055}, zoom: 15 };
+
       watchLocation();
 
-      var currentLocation = LocationService.getCurrentLocation();
 
       $scope.createWaypoint = function () {
 

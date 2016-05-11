@@ -11,7 +11,7 @@ angular
         var journeyId = parseInt($stateParams.journeyId);
         JourneyService.getJourney(journeyId).then(function (journey) {
           $scope.journey = journey;
-          $scope.map = {center: {latitude: 51.51, longitude: -0.071}, zoom: 15 };
+          $scope.map = {center: {latitude: 51.517334, longitude: -0.073055}, zoom: 15 };
           LocationService.watchLocation();
           $scope.currentWaypoint = getFirstWaypoint();
           watchLocation();

@@ -15,11 +15,11 @@
     </div>
     <div ng-if="distanceFromWaypoint !== '' && distanceFromWaypoint !== '0m'">
       <p id="distance">
-        <span class="red">{{distanceFromWaypoint}}</span> to your next waypoint
+        <span>{{distanceFromWaypoint}}</span> to your next waypoint
       </p>
     </div>
     <div ng-if="distanceFromWaypoint === '0m'">
-      <p class="red">You've reached a waypoint!</p>
+      <p id="reach-wp">You've reached a waypoint!</p>
     </div>
   </ion-content>
 </ion-view>
