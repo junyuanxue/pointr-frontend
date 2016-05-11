@@ -98,8 +98,9 @@ angular
 
       function changeCurrentWaypoint() {
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
-        
-        $scope.currentWaypoint.icon = {url: "//maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+
+        // $scope.currentWaypoint.icon = {url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+        $scope.currentWaypoint.icon = {url:"../assets/images/yellow-dot.png"}
 
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
         if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length -1))){
