@@ -21,12 +21,15 @@ angular
           WaypointService.createWaypoint($scope.journey.id, LocationService.getCurrentLocation())
             .then(function (waypoint) {
               waypoint.marker = {};
-              waypoint.marker.coords = {latitude: waypoint.latitude, longitude: waypoint.longitude};
+              console.log(waypoint);
               $scope.journey.addWaypoint(waypoint);
+
+              console.log(waypoint.coords.latitude);
+              console.log(waypoint.coords.longitude);
+              $scope.map = {center: {latitude: parseFloat(waypoint.coords.latitude), longitude: parseFloat(waypoint.coords.longitude)}, zoom: 15 };
 
               $cordovaToast
                 .show('Dropped pin', 'long', 'center');
-
             });
         }
       };
