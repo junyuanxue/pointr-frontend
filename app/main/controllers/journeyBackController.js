@@ -91,7 +91,7 @@ angular
       }
 
       function isCloseEnoughToWaypoint () {
-        return distanceBetween($scope.currentLocation, $scope.currentWaypoint.coords) < 10;
+        return distanceBetween($scope.currentLocation, $scope.currentWaypoint.coords) < 15;
       }
 
       function changeCurrentWaypoint () {
