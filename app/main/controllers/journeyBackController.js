@@ -91,7 +91,7 @@ angular
       }
 
       function isCloseEnoughToWaypoint () {
-        return distanceBetween($scope.currentLocation, $scope.currentWaypoint.coords) < 5;
+        return distanceBetween($scope.currentLocation, $scope.currentWaypoint.coords) < 10;
       }
 
       function changeCurrentWaypoint () {
@@ -103,7 +103,7 @@ angular
         }, 1000);
 
         $timeout(function () {
-          $scope.notificationMessage = ''}, 3000);
+          $scope.notificationMessage = ''}, 1000);
 
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
         if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1))) {
@@ -111,7 +111,7 @@ angular
         } else {
           $timeout(function () {
             $scope.notificationMessage = "Journey complete. :)"
-          }, 4000);
+          }, 3000);
         }
       }
     }]);
