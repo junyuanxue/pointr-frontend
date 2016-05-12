@@ -96,7 +96,8 @@ angular
 
       function changeCurrentWaypoint () {
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
-        $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
+        // $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
+        $scope.currentWaypoint.icon = { url: 'http://pix.iemoji.com/hang33/0459.png' };
 
         $scope.notificationMessage = "You've reached a waypoint!"
 
