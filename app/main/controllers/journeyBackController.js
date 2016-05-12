@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyBackController', ['$timeout', '$cordovaToast', '$scope', 'JourneyFactory', 'JourneyService', 'WaypointService', '$stateParams', 'LocationService',
-    function ($timeout, $cordovaToast, $scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
+  .controller('JourneyBackController', ['$timeout', '$scope', 'JourneyFactory', 'JourneyService', 'WaypointService', '$stateParams', 'LocationService',
+    function ($timeout, $scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
 
       $scope.distanceFromWaypoint = '';
       $scope.notificationMessage = '';

@@ -2,8 +2,8 @@
 
 angular
   .module('main')
-  .controller('JourneyController', ['$scope', '$cordovaToast', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
-    function ($scope, $cordovaToast, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
+  .controller('JourneyController', ['$scope', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
+    function ($scope, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
 
       _loadCurrentJourneyFromService();
 
@@ -25,8 +25,6 @@ angular
               waypoint.marker = {};
               $scope.journey.addWaypoint(waypoint);
               $scope.map = {center: {latitude: parseFloat(waypoint.coords.latitude), longitude: parseFloat(waypoint.coords.longitude)}, zoom: 15 };
-
-              $cordovaToast.showLongBottom('Dropped pin');
             });
         }
       };
@@ -77,7 +75,6 @@ angular
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
             $scope.imgURI = 'data:image/jpeg;base64,' + imageData;
-            _showPhotoToast();
 
             var waypoints = $scope.journey.waypoints;
             var lastWaypoint = waypoints[waypoints.length - 1];
@@ -87,9 +84,4 @@ angular
             console.log('Error:' + error);
           });
       };
-
-      function _showPhotoToast () {
-        $cordovaToast.showLongBottom('Picture added!');
-      }
-
     }]);
