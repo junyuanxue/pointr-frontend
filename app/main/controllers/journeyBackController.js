@@ -98,12 +98,11 @@ angular
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
         $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
 
-        $timeout(function () {
-          $scope.notificationMessage = "You've reached a waypoint!"
-        }, 1000);
+        $scope.notificationMessage = "You've reached a waypoint!"
 
         $timeout(function () {
-          $scope.notificationMessage = ''}, 1000);
+          $scope.notificationMessage = ''
+        }, 2000);
 
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
         if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1))) {
