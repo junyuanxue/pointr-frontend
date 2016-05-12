@@ -4,7 +4,7 @@ describe('WaypointService', function () {
   beforeEach(module('main'));
 
   var WaypointService, httpBackend;
-  var DOMAIN = 'http://localhost:3001';
+  var DOMAIN = 'https://wayback-junyuanx-2.c9users.io';
 
   var firstWaypoint = { 'id': 1, 'latitude': '0.1', 'longitude': '1.1' };
   var coordinates = { latitude: 0.1, longitude: 1.1 };
@@ -19,8 +19,8 @@ describe('WaypointService', function () {
     httpBackend.expectPOST(DOMAIN + '/journeys/1/waypoints').respond(firstWaypoint);
     WaypointService.createWaypoint(1, coordinates)
       .then(function (waypoint) {
-        expect(waypoint.latitude).toEqual(coordinates.latitude);
-        expect(waypoint.longitude).toEqual(coordinates.longitude);
+        expect(waypoint.coords.latitude).toEqual(coordinates.latitude);
+        expect(waypoint.coords.longitude).toEqual(coordinates.longitude);
       });
     httpBackend.flush();
   });

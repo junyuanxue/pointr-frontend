@@ -12,11 +12,11 @@ describe('WaypointFactory', function () {
   }));
 
   it('has a latitude', function () {
-    expect(waypoint.latitude).toEqual(10.0);
+    expect(waypoint.coords.latitude).toEqual(10.0);
   });
 
   it('adds a longitude', function () {
-    expect(waypoint.longitude).toEqual(10.1);
+    expect(waypoint.coords.longitude).toEqual(10.1);
   });
 
   it('starts with an empty description', function () {
