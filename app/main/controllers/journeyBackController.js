@@ -109,7 +109,7 @@ angular
           $scope.currentWaypoint = $scope.journey.waypoints[currentWaypointIndex + 1];
         } else {
           $timeout(function () {
-            $scope.notificationMessage = "Journey complete. :)"
+            $scope.notificationMessage = "Journey complete :)"
           }, 3000);
         }
       }
