@@ -10,7 +10,9 @@
         </ui-gmap-circle>
     </ui-gmap-google-map>
 
-    <p id="reach-wp" class="ion-ios-location">{{notificationMessage}}</p>
+    <p id="reach-wp" class="ion-ios-location">
+      {{ notificationMessage }}
+    </p>
     <div ng-if="distanceFromWaypoint === ''">
       <p>Waiting for GPS...</p>
     </div>
