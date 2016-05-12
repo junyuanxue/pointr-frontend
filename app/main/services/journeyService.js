@@ -75,16 +75,14 @@ angular
       self.currentJourney = null;
     }
 
-    function _successCallBack (err) { return; }
+    function _successCallBack (success) { return success; }
 
     function _errorCallBack (err) { return err; }
 
-
     function _createJourneys (journeyArray) {
-      var journeys = journeyArray.map(function (journey) {
+      return journeyArray.map(function (journey) {
         var journeyObject = new JourneyFactory(journey.description, journey.id);
         return journeyObject;
       });
-      return journeys;
     }
   }]);
