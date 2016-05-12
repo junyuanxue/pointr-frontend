@@ -10,7 +10,7 @@ angular
       $scope.currentLocation = null;
       LocationService.watchLocation();
       var currentLocation = LocationService.getCurrentLocation();
-      $scope.map = {center: {latitude: 51.517334, longitude: -0.073055}, zoom: 15 };
+      $scope.map = {center: {latitude: 51.517480, longitude: -0.073281}, zoom: 15 };
 
       watchLocation();
 

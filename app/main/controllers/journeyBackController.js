@@ -2,16 +2,17 @@
 
 angular
   .module('main')
-  .controller('JourneyBackController', ['$cordovaToast', '$scope', 'JourneyFactory', 'JourneyService', 'WaypointService', '$stateParams', 'LocationService',
-    function ($cordovaToast, $scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
+  .controller('JourneyBackController', ['$timeout', '$cordovaToast', '$scope', 'JourneyFactory', 'JourneyService', 'WaypointService', '$stateParams', 'LocationService',
+    function ($timeout, $cordovaToast, $scope, JourneyFactory, JourneyService, WaypointService, $stateParams, LocationService) {
 
       $scope.distanceFromWaypoint = '';
+      $scope.notificationMessage = '';
 
       $scope.startJourneyBack = function () {
         var journeyId = parseInt($stateParams.journeyId);
         JourneyService.getJourney(journeyId).then(function (journey) {
           $scope.journey = journey;
-          $scope.map = {center: {latitude: 51.517334, longitude: -0.073055}, zoom: 15 };
+          $scope.map = {center: {latitude: 51.517480, longitude: -0.073281}, zoom: 15 };
           LocationService.watchLocation();
           $scope.currentWaypoint = getFirstWaypoint();
           watchLocation();
@@ -96,11 +97,21 @@ angular
       function changeCurrentWaypoint () {
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
         $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
-        // $cordovaToast.showLongBottom('Reached waypoint!');
+
+        $timeout(function () {
+          $scope.notificationMessage = "You've reached a waypoint!"
+        }, 1000);
+
+        $timeout(function () {
+          $scope.notificationMessage = ''}, 3000);
 
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
         if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1))) {
           $scope.currentWaypoint = $scope.journey.waypoints[currentWaypointIndex + 1];
+        } else {
+          $timeout(function () {
+            $scope.notificationMessage = "Journey complete. :)"
+          }, 4000);
         }
       }
     }]);

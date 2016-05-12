@@ -107,7 +107,6 @@ h2 {
   color: rgb(228, 33, 18);
 }
 
-
 /*Journey Back Page*/
 
 #journey-back p {
@@ -117,6 +116,6 @@ h2 {
   color: #666;
 }
 
-span, #reach-wp {
+#journey-back span, #journey-back #reach-wp {
   color: rgb(228, 33, 18);
 }

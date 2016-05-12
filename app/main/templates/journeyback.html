@@ -10,16 +10,14 @@
         </ui-gmap-circle>
     </ui-gmap-google-map>
 
+    <p id="reach-wp" class="ion-ios-location">{{notificationMessage}}</p>
     <div ng-if="distanceFromWaypoint === ''">
       <p>Waiting for GPS...</p>
     </div>
-    <div ng-if="distanceFromWaypoint !== '' && distanceFromWaypoint !== '0m'">
+    <div ng-if="distanceFromWaypoint !== '' && reachWaypointMessage === ''">
       <p id="distance">
         <span>{{distanceFromWaypoint}}</span> to your next waypoint
       </p>
-    </div>
-    <div ng-if="distanceFromWaypoint === '0m'">
-      <p id="reach-wp">You've reached a waypoint!</p>
     </div>
   </ion-content>
 </ion-view>
