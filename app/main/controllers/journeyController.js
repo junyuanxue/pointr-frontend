@@ -5,12 +5,15 @@ angular
   .controller('JourneyController', ['$scope', '$cordovaCamera', '$cordovaFile', 'JourneyService', '$location', 'WaypointService', 'uiGmapGoogleMapApi', 'LocationService',
     function ($scope, $cordovaCamera, $cordovaFile, JourneyService, $location, WaypointService, uiGmapGoogleMapApi, LocationService) {
 
+      var INITIAL_COORDS = {latitude: 51.517480, longitude: -0.073281};
+      var MAP_ZOOM = 15;
+      
       _loadCurrentJourneyFromService();
 
       $scope.currentLocation = null;
       LocationService.watchLocation();
       var currentLocation = LocationService.getCurrentLocation();
-      $scope.map = {center: {latitude: 51.517480, longitude: -0.073281}, zoom: 15 };
+      $scope.map = { center: INITIAL_COORDS, zoom: MAP_ZOOM };
 
       watchLocation();
 

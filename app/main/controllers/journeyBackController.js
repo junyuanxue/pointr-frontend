@@ -8,12 +8,14 @@ angular
       $scope.distanceFromWaypoint = '';
       $scope.notificationMessage = '';
       var NEAR_WAYPOINT_SCOPE = 15;
+      var INITIAL_COORDS = { latitude: 51.517480, longitude: -0.073281 };
+      var MAP_ZOOM = 15;
 
       $scope.startJourneyBack = function () {
         var journeyId = parseInt($stateParams.journeyId);
         JourneyService.getJourney(journeyId).then(function (journey) {
           $scope.journey = journey;
-          $scope.map = {center: {latitude: 51.517480, longitude: -0.073281}, zoom: 15 };
+          $scope.map = { center: INITIAL_COORDS, zoom: MAP_ZOOM };
           LocationService.watchLocation();
           $scope.currentWaypoint = _getFirstWaypoint();
           _watchLocation();
@@ -21,12 +23,6 @@ angular
       };
 
       $scope.startJourneyBack();
-
-      function _markAsReached (waypoint) {
-        WaypointService.deleteWaypoint(waypoint.id).then(function () {
-          waypoint.markAsReached();
-        });
-      }
 
       $scope.deleteJourney = function () {
         JourneyService.deleteJourney($scope.journey.id);
@@ -112,17 +108,34 @@ angular
         }
       }
 
-      function _validateWaypoint (currentWaypointIndex) {
-        return currentWaypointIndex > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1));
-      }
-
       function _onWaypointReached () {
-        // $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
-        $scope.currentWaypoint.icon = { url: 'http://pix.iemoji.com/hang33/0459.png' };
-
+        _changePinIcon();
         $scope.notificationMessage = 'You\'ve reached a waypoint!';
         $timeout(function () {
           $scope.notificationMessage = '';
         }, 2000);
+      }
+
+      function _changePinIcon () {
+        // $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
+        $scope.currentWaypoint.icon = { url: 'http://pix.iemoji.com/hang33/0459.png' };
+      }
+
+      function _markAsReached (waypoint) {
+        WaypointService.deleteWaypoint(waypoint.id).then(function () {
+          waypoint.markAsReached();
+        });
+      }
+
+      function _validateWaypoint (currentWaypointIndex) {
+        return _isInWaypointsArray(currentWaypointIndex) && (_isNotLastWaypoint(currentWaypointIndex));
+      }
+
+      function _isInWaypointsArray (index) {
+        return index > - 1;
+      }
+
+      function _isNotLastWaypoint (index) {
+        index !== $scope.journey.waypoints.length - 1;
       }
     }]);
