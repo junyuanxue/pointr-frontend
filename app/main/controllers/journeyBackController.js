@@ -51,27 +51,31 @@ angular
           return LocationService.getCurrentLocation();
         }, function (oldLocation, currentLocation) {
           $scope.currentLocation = currentLocation;
-          $scope.currentLocation.center = {
-            latitude: $scope.currentLocation.latitude,
-            longitude: $scope.currentLocation.longitude
-          };
-
-          $scope.currentLocation.stroke = {
-            color: '#66CCFF',
-            weight: 1,
-            opacity: 0.8
-          };
-
-          $scope.currentLocation.fill = {
-            color: '#66CCFF',
-            opacity: 0.6
-          };
-
-          if (isCloseEnoughToWaypoint()) {
-            changeCurrentWaypoint();
-          }
+          _displayCenter();
+          _centerStyling();
+          if (isCloseEnoughToWaypoint()) { changeCurrentWaypoint(); }
           $scope.distanceFromWaypoint = _displayDistanceBetween(currentLocation, $scope.currentWaypoint.coords);
         });
+      }
+
+      function _displayCenter () {
+        $scope.currentLocation.center = {
+          latitude: $scope.currentLocation.latitude,
+          longitude: $scope.currentLocation.longitude
+        };
+      }
+
+      function _centerStyling () {
+        $scope.currentLocation.stroke = {
+          color: '#66CCFF',
+          weight: 1,
+          opacity: 0.8
+        };
+
+        $scope.currentLocation.fill = {
+          color: '#66CCFF',
+          opacity: 0.6
+        };
       }
 
       function _displayDistanceBetween (location, waypoint) {
@@ -95,13 +99,17 @@ angular
 
       function changeCurrentWaypoint () {
         var currentWaypointIndex = $scope.journey.waypoints.indexOf($scope.currentWaypoint);
-
-        $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
-        $cordovaToast.showLongBottom('Reached waypoint!');
-
+        _onWaypointReached();
         markAsReached($scope.journey.waypoints[currentWaypointIndex]);
-        if ((currentWaypointIndex) > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1))) {
+        if (currentWaypointIndex > - 1 && (currentWaypointIndex !== ($scope.journey.waypoints.length - 1))) {
           $scope.currentWaypoint = $scope.journey.waypoints[currentWaypointIndex + 1];
         }
+      }
+
+      // function _
+
+      function _onWaypointReached () {
+        $scope.currentWaypoint.icon = {url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'};
+        $cordovaToast.showLongBottom('Reached waypoint!');
       }
     }]);
