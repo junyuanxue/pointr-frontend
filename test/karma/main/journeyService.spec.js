@@ -4,7 +4,7 @@ describe('JourneyService', function () {
   beforeEach(module('main'));
 
   var JourneyService, httpBackend;
-  var DOMAIN = 'http://localhost:3001';
+  var DOMAIN = 'https://wayback-junyuanx-2.c9users.io';
 
   var firstJourney = { 'id': 1 };
   var journeyFromServer = { 'journey': {'id': 1},

@@ -1,37 +1,45 @@
 <ion-view view-title="Journey">
-  <ion-content class="padding">
+  <ion-content id="journey">
 
     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
       <ui-gmap-marker coords="waypoint.coords" idkey="waypoint.id" ng-repeat="waypoint in journey.waypoints">
       </ui-gmap-marker>
     </ui-gmap-google-map>
-    <p>
-      <button class="button button-assertive icon-right ion-plus-round" id="add-waypoint" ng-click="createWaypoint();">Add Waypoint</button>
 
-      <button class="button button-assertive icon-right ion-plus-round" id="end-journey" ng-click="loadAllJourneys();">End Journey</button>
+    <p id="buttons">
+      <button class="button button-small button-assertive icon-right ion-plus-round" id="add-waypoint" ng-click="createWaypoint();">
+        Add Waypoint
+      </button>
+
+      <button id="camera" class="button button-small button-outline button-assertive icon ion-ios-camera" ng-click="takePhoto()"></button>
+
+      <button class="button button-small button-outline button-assertive icon-right ion-android-send" id="end-journey" ng-click="loadAllJourneys();">
+        End Journey
+      </button>
     </p>
 
-    <p id="journey-desc"> {{ journey.description }} </p>
+    <p id="journey-desc">
+      {{ journey.description }}
+    </p>
     <div ng-if="journey.description === ''">
       <input type="text" id="edit-journey-desc" placeholder="Describe your journey..." ng-model="descText">
-      <button id="save-journey-desc" class="button button-stable" ng-click="editJourneyDescription(descText);">Save</button>
+      <button id="save-journey-desc" class="button button-small button-outline button-assertive icon ion-ios-paperplane" ng-click="editJourneyDescription(descText);"></button>
     </div>
 
     <div ng-if="getLastWaypoint() !== undefined">
-      <p id="wp-desc"> {{ getLastWaypoint().description }} </p>
+      <p id="wp-desc">
+        {{ getLastWaypoint().description }}
+      </p>
       <div ng-if="getLastWaypoint().description === ''">
         <input type="text" id="add-wp-desc" placeholder="What's special about this spot?" ng-model="descText">
-        <button id="save-wp-desc" class="button button-stable" ng-click="editWaypointDescription(descText);">Save</button>
+        <button id="save-wp-desc" class="button button-small button-outline button-assertive icon ion-ios-paperplane" ng-click="editWaypointDescription(descText);"></button>
       </div>
     </div>
 
-    <button class="button button-energized" ng-click="takePhoto()">
-      Take Photo
-    </button>
-    <ion-scroll>
+    <!-- <ion-scroll>
     	  <img ng-src="{{ctrl.imgURI}}">
         {{ ctrl.imgURI; }}
-    </ion-scroll>
+    </ion-scroll> -->
 
   </ion-content>
 </ion-view>

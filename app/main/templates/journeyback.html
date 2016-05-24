@@ -1,6 +1,6 @@
 <ion-view view-title="Journey Back">
   <!-- do you want padding -->
-  <ion-content class="padding">
+  <ion-content id="journey-back">
 
     <!-- content goes here -->
     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -9,6 +9,17 @@
         <ui-gmap-circle center="currentLocation.center" radius="100" fill="currentLocation.fill" stroke="currentLocation.stroke" editable="true" visible="true">
         </ui-gmap-circle>
     </ui-gmap-google-map>
-    <div id="distance">{{distanceFromWaypoint}}</div>
+
+    <p id="reach-wp" class="ion-ios-location">
+      {{ notificationMessage }}
+    </p>
+    <div ng-if="distanceFromWaypoint === ''">
+      <p>Waiting for GPS...</p>
+    </div>
+    <div ng-if="distanceFromWaypoint !== '' && notificationMessage === ''">
+      <p id="distance">
+        <span>{{distanceFromWaypoint}}</span> to your next waypoint
+      </p>
+    </div>
   </ion-content>
 </ion-view>
